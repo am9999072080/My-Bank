@@ -2,7 +2,8 @@ package com.am.MyBank.controller;
 
 import com.am.MyBank.model.Card;
 import com.am.MyBank.repository.DebitRepository;
-import com.am.MyBank.service.DebitService;
+import com.am.MyBank.service.CreditService;
+import com.am.MyBank.service.impl.CreditServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,62 +11,63 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
-public class DebitController {
 
-    private final DebitService service;
+@Controller
+public class CreditController {
+    private final CreditService service;
     public Card card;
 
 
     @Autowired
     private DebitRepository repository;
 
-    public DebitController(DebitService service) {
+    public CreditController(CreditServiceImpl service) {
         this.service = service;
     }
 
 
-    @GetMapping("/debit")
+    @GetMapping("/credit")
     public String debitAddMain(Model model) {
         Iterable<Card> cardAdd = repository.findAll();
         model.addAttribute("cardAdd", cardAdd);
-        return "debit-add-main";
+        return "credit-add-main";
     }
 
-    @GetMapping("/debit/add")
+    @GetMapping("/credit/add")
     public String debitAdd(Model model) {
-        return "debit-add";
+        return "credit-add";
     }
 
-    @PostMapping("/debit/add")
+    @PostMapping("/credit/add")
     public String debitPostAdd(@RequestParam double balance, Model model) {
         service.addBalance(balance);
-        return "redirect:/debit";
+        return "redirect:/credit";
     }
 
-    @GetMapping("/debit/pay")
+    @GetMapping("/credit/pay")
     public String debitPay(Model model) {
-        return "debit-add";
+        return "credit-add";
     }
 
-    @PostMapping("/debit/pay")
+    @PostMapping("/credit/pay")
     public String debitPostPay(@RequestParam double balance, Model model) {
 
         service.pay(balance);
 
-        return "redirect:/debit";
+        return "redirect:/credit";
     }
 
-    @GetMapping("/get")
+    @GetMapping("/get/credit")
     public String get(Model model) {
         Iterable<Card> cardGet = repository.findAll();
         model.addAttribute("cardGet", cardGet);
         service.getAllBalance();
-        return "debit-get-main";
+        return "credit-get-main";
     }
 
-    @GetMapping("/get/all")
+    @GetMapping("/get/all/credit")
     public String getAll(Model model) {
-        return "redirect:/get";
+        return "redirect:/get/credit";
     }
 }
+
