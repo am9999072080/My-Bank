@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<title th:text="${title}"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="~{section1/header::header}"></header>
+
+<div class="container mt-5">
+    <h1>ТРАНЗАКЦИЯ</h1>
+    <div th:each="el : ${cardGet}" class="cell-5 mt-2">
+
+        <p1>ОБЩИЙ БАЛАНС -</p1>
+        <p1 th:text="${el.allBalance}"></p1>
+    </div>
+    <a href="/debit/add">BACK TO DEBIT CARD</a>
+</div>
+
+</div>
+
+</body>
+</html>

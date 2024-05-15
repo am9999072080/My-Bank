@@ -1,4 +1,7 @@
 package com.am.MyBank.repository;
 
-public interface DebitRepository {
+import com.am.MyBank.model.Card;
+import org.springframework.data.repository.CrudRepository;
+
+public interface DebitRepository extends CrudRepository<Card, Long> {
 }

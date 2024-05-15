@@ -1,0 +1,29 @@
+<div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img">
+                <title>Bootstrap</title>
+
+                <img src="https://cdn-icons-png.flaticon.com/512/3097/3097053.png" width="80" height="80">
+                <span class="fs-1">Y BANK <a> >>>>>>>>>: <time id="currentTime"></time></a></span>
+            </svg>
+
+            <script>
+                var timeElement = document.getElementById('currentTime');
+                setInterval(function () {
+                    var currentTime = new Date();
+                    timeElement.textContent = currentTime.toLocaleDateString() + " _ " + currentTime.toLocaleTimeString();
+                }, 1000);
+            </script>
+
+        </a>
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            <a class="p-4 text-dark" href="/">Главная</a>
+            <a class="p-4 text-dark" href="/">КРЕДИТНАЯ КАРТА</a>
+            <a class="p-4 text-dark" href="/debit/add">ДЕБЕТОВАЯ КАРТА</a>
+            <a class="p-4 text-dark" href="/about">О КАРТАХ</a>
+        </nav>
+    </div>
+</div>
+
+
