@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<title th:text="${title}"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="~{section1/header::header}"></header>
+
+
+<div class="container mt-5 mb-5">
+    <center>
+        <h1> КРЕДИТНАЯ КАРТА</h1><br><br>
+    </center>
+    <form action="/credit/add" method="post">
+        <h2>Пополнить карту без комиссии:</h2>
+        <span>Введите нужную сумму для пополнения. Проверяя правильность указанной суммы, нажмите «ПОПОЛНИТЬ».</span>
+        <input type="text" name="balance" pattern="\d+" title=" Только положительные целые числа">
+        <button type="submit" class="btn btn-success">ПОПОЛНИТЬ</button>
+        <br><br>
+    </form>
+    <form action="/credit/pay" method="post">
+        <h2>Вывести средства без комиссии:</h2>
+        <span>Введите нужную сумму для оплаты. Проверяя правильность указанной суммы, нажмите «ОПЛАТИТЬ». &emsp;&emsp;&emsp;</span>
+        <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа">
+        <button type="submit" class="btn btn-success">&ensp;ОПЛАТИТЬ&ensp;</button>
+        <br><br>
+    </form>
+
+    <form action="/get/credit" method="get">
+        <h2>Узнать баланс карты:</h2>
+        <span> Нажимая на кнопку «УЗНАТЬ БАЛАНС», Вы узнаете баланс на счете, про кешбэк и бонусные баллы. &emsp;&emsp;&emsp;&emsp;&ensp;</span>
+        <button type="submit" class="btn btn-success"> &emsp;&emsp;&emsp; УЗНАТЬ &emsp;&emsp;&emsp; БАЛАНС &emsp;&emsp;&emsp;</button>
+        <br>
+    </form>
+
+    <a href="/">BACK TO HOME</a>
+
+</div>
+
+<div th:insert="~{section1/footer::footer}"></div>
+
+</body>
+</html>

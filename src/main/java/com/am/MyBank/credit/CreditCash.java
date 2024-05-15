@@ -42,6 +42,7 @@ public class CreditCash extends CreditCard {
         CreditCash that = (CreditCash) o;
         return Double.compare(bonusForBuy, that.bonusForBuy) == 0 && Double.compare(bonus, that.bonus) == 0;
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), bonusForBuy, bonus);

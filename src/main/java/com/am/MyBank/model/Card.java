@@ -17,6 +17,8 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     double balance;
+    private final double creditLimit = 10_000;
+    private double creditBalance = creditLimit;
     double bonus;
     double accumulation;
     String date;
