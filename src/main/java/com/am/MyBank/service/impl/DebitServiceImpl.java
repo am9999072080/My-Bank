@@ -5,12 +5,14 @@ import com.am.MyBank.debit.DebAccumulation;
 import com.am.MyBank.model.Card;
 import com.am.MyBank.repository.DebitRepository;
 import com.am.MyBank.service.DebitService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
+@RequiredArgsConstructor
 public class DebitServiceImpl implements DebitService {
     private final DebitRepository repository;
     public LocalDateTime time = LocalDateTime.now();
@@ -19,9 +21,6 @@ public class DebitServiceImpl implements DebitService {
 
     private final BankCard bankcard = new DebAccumulation(card);
 
-    public DebitServiceImpl(DebitRepository repository) {
-        this.repository = repository;
-    }
 
     public String formatTime() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");

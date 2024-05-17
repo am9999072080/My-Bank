@@ -5,12 +5,16 @@ import com.am.MyBank.credit.CreditAccumulation;
 import com.am.MyBank.model.Card;
 import com.am.MyBank.repository.CreditRepository;
 import com.am.MyBank.service.CreditService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
+@RequiredArgsConstructor
 public class CreditServiceImpl implements CreditService {
 
 
@@ -20,10 +24,6 @@ public class CreditServiceImpl implements CreditService {
     private final Card card = new Card();
 
     private final BankCard bankcard = new CreditAccumulation(card);
-
-    public CreditServiceImpl(CreditRepository repository) {
-        this.repository = repository;
-    }
 
 
     public String formatTime() {
