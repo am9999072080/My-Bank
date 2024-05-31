@@ -13,9 +13,22 @@ public class MainController {
         return "home";
     }
 
+    @GetMapping("/exchange")
+    public String Exchange(Model model) {
+        model.addAttribute("title", "_Exchange_");
+        return "exchange";
+    }
+
     @GetMapping("/about")
     public String about(Model model) {
         model.addAttribute("title", "Преимущества и недостатки банковских карт");
         return "about";
     }
+
+    @GetMapping("/login")
+    public String log(Model model) {
+        model.addAttribute("title", "_Login_");
+        return "reg/user";
+    }
+
 }

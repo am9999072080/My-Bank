@@ -12,11 +12,11 @@
     <h1>ТРАНЗАКЦИЯ</h1>
     <div th:each="el : ${cardAdd}" class="cell-5 mt-2">
         <p1>БАЛАНС -</p1>
-        <p1 th:text="${el.balance}" ></p1>
+        <p1 th:text="${el.balance}"></p1>
         <p1>$ -</p1>
         <p1 th:text="${el.date}"></p1>
     </div>
-    <a href="/debit/add">BACK TO DEBIT CARD</a>
+    <p class="mb-1">НАЗАД: &#128073 <a href="/debit/add">BACK TO DEBIT CARD</a>
 
 </div>
 

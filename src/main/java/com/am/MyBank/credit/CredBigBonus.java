@@ -12,7 +12,6 @@ public class CredBigBonus extends CreditCash {
     private final double potentialCash = 0.05;
     private final double maxAmount = 5000;
 
-
     public CredBigBonus(Card card) throws RuntimeException {
         super(card);
     }

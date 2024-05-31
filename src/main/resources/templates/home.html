@@ -5,32 +5,33 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
 <body>
-
 <header th:insert="~{section1/header::header}"></header>
 
 
 <div class="container mt-1">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvtxRhJJPQyDhEVbrUT9cUSLAPM4KBnocZIQ&amp;usqp=CAU"
+         jsaction="VQAsE" class="sFlh5c pT0Scc" alt="MyBank - Home" jsname="JuXqh"
+         style="max-width: 1000px; width: 350px; height: 250px; margin: 0px;" data-iml="62817">
     <section1 class="py-1 text-center container">
-        <h1 th:text="${title}"/>
-        <h2 class="fw-light">Подберите себе лучшую банковскую карту</h2>
+        <h2 th:text="${title}"/>
     </section1>
 
 
     <div class="container mt-1">
 
         <p class="lead text-body-secondary">
-        <h4 class="fw-light">Как работает сервис:</h4><br>
-        <li>Вы выбираете банковскую карту&emsp;<a href="/debit/add">DEBIT CARD</a>&emsp;&emsp;или&emsp;&emsp;<a
-                href="/credit/add">CREDIT CARD</a></li>
-        <br>
-        <li>Вы перейдете на соответствующую страницу: ДЕБЕТОВАЯ КАРТА или КРЕДИТНАЯ КАРТА.</li>
-        <br>
+        <h5 class="fw-light">Как работает сервис:</h5>
+        <li>Чтобы пользоваться приложением, зайдите в личный кабинет <a href="/login">В Х О Д</a>&emsp;&emsp;&emsp;&emsp;
+        </li>
+
+        <li>Пройдите регистрацию и войдите в личный кабинет.</li>
+
         <li>Вы выбираете подходящую операцию.</li>
-        <br>
+
         <li>Банк рассчитывает повышенный кэшбэк или бонусы за эту операцию и начисляет его на Ваш счет.</li>
-        </p><br>
+        </p>
         <li>Подробнее о выборе банковской карты.&emsp;<a href="/about">О КАРТАХ</a></li>
-        </p><br>
+        </p>
     </div>
 </div>
 

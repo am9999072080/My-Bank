@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<title th:text="${title}"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="~{section1/header::header}"></header>
+<h5 style='text-align: center;'> ВАЛЮТНЫЙ ИНФОРМАТОР </h5>
+
+<style>
+    .layer1 {
+        padding: 1px;
+        float: left;
+        width: 6px;
+    }
+
+    .layer2 {
+        padding: 5px;
+        width: 300px;
+        float: right;
+    }
+
+    .layer3 {
+        padding: 3px;
+        width: 600px;
+        float: right;
+    }
+
+
+    .clear {
+        clear: right;
+    }
+</style>
+
+<div class="layer1">
+
+    <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow"
+                                                     target="_blank"><span class="blue-text">Track all markets on TradingView</span></a>
+        </div>
+        <script type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+
+        </script>
+    </div>
+</div>
+
+<div class="layer2">
+    <div
+            style='width:100%;*width:500px;max-width:500px;margin:0px auto;padding:0px;border:1px solid #05135a;background-color:#FFFFFF;'>
+        <div style='text-align:center;padding:10px 5px;background-color:#05135a;font-family:Arial;font-size:16px;color:#FFFFFF;font-weight:bold;'>
+            Конвертер валют
+        </div>
+        <div style='padding:5px;'>
+            <script type='text/javascript' charset='utf-8'>if (typeof gfxIdx === 'undefined') gfxIdx = 0;
+            gfxIdx++;
+            document.write("<div id='gfxWidget" + gfxIdx + "'><" + "/div>");
+            document.write("<script async type='text/javascript' src='https://www.dollarfx.org/ru/widget/loadconverter?&idx=" + gfxIdx + "' charset='utf-8'></" + "script>");
+            </script>
+            <div style='overflow: hidden;'>
+                <div style='text-align: center;'><a style='font-size:12px;color:#777777;text-decoration: none;'
+                                                    href='https://www.dollarfx.org/ru/'
+                                                    target='_blank'>www.dollarfx.org</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="layer3">
+    <table style="border-collapse:collapse;border-color:#D7D7D7;">
+        <tr>
+            <td><a href="http://www.profinance.ru" id="forexpf_economic"
+                   style="font-size: 20px; margin-bottom: 5px; font-weight:bold">Новости экономики</a><br>
+                <script src="https://informers.forexpf.ru/export/economic.js"></script>
+            </td>
+        </tr>
+    </table>
+    <br><br>
+    <p class="fs-3">НАЗАД: &#128073 <a href="/">BACK TO HOME</a></p>
+</div>
+<br><br><br>
+
+</div>
+
+<div class="clear"></div>
+<br><br><br>
+
+<style>
+    {
+        position: relative
+    ;
+        bottom: -10em
+    ;
+        right: 0em
+    ;
+        text-align: right
+    ;
+    }
+</style>
+<div th:insert="~{section1/footer::footer}"></div>
+</body>
+</html>
