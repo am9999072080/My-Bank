@@ -11,21 +11,16 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvtxRhJJPQyDhEVbrUT9cUSLAPM4KBnocZIQ&amp;usqp=CAU"
          jsaction="VQAsE" class="sFlh5c pT0Scc" alt="MyBank - Home" jsname="JuXqh"
          style="max-width: 1000px; width: 350px; height: 250px; margin: 0px;" data-iml="62817">
-    <form action="/get/user{email}/user{password}" method="get">
-        <h4>Для входа в личный кабинет в качестве логина используется адрес электронной почты и пароль</h4><br>
-        <span>Логин</span>
-        <input type="email" name="email" maxlength="25" minlength="4" pattern="^\S+@\S+\.\S+$" id="email"
-               placeholder="Email" required>
-        <span>&emsp;&emsp;Пароль</span>
-        <input type="password" name="Пароль" minlength="6" id="password" placeholder="Пароль" required>&emsp;&emsp;&emsp;&ensp;
-        <button class="btn btn-primary btn-block create-account" type="submit">&emsp;&ensp;В Х О Д&emsp;&ensp;</button>
-        <br><br>
-        <br><br>
-    </form>
 
+    <form action="/get/user" method="get">
+        <input type="text" name="email" id="email" placeholder="email" required>&emsp;&emsp;&emsp;&ensp;
+        <input type="password" name="password" minlength="6" id="password" placeholder="Пароль" required>&emsp;&emsp;&emsp;&ensp;
+        <button class="btn btn-primary btn-block create-account" type="submit">&emsp;&ensp;В Х О Д&emsp;&ensp;</button>
+    </form>
+    <br><br><br><br><br>
 
     <form action="/user/add">
-        <h4>Регистрируясь в личном кабинете, вы получаете доступ к полезным сервисам MyBank</h4><br>
+        <h3>Регистрируясь в личном кабинете, вы получаете доступ к полезным сервисам MyBank</h3><br>
         <div style="text-align:center">
             <button class="btn btn-primary btn-block create-account" type="submit"> РЕГИСТРАЦИЯ</button>
         </div>
