@@ -4,12 +4,10 @@ import com.am.MyBank.model.User;
 
 import com.am.MyBank.repository.UserRepository;
 import com.am.MyBank.service.UserService;
-
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,24 +34,22 @@ public class UserController {
 
     @PostMapping("/user/add")
     public String userPostAdd(@Validated User user, Model model) {
-        if (userService.addUser(user) == null) {
+        if (userService.createUser(user) == null) {
             return "reg/errors-user-add";
         } else if (user.getAge() < 18) {
-            userService.addUser(user);
+            userService.createUser(user);
             return "reg/errors-small-user";
         } else {
-            userService.addUser(user);
+            userService.createUser(user);
             return "redirect:/registration";
         }
     }
 
     @GetMapping("/get/user")
     public String getUser(@RequestParam String email, @Validated String password, Model model) {
-        if (userService.getUser(email, password, model) == null) {
+        if ((userService.getUser(email, password, model) == null)) {
             return "reg/errors-user-get";
-        } else if (userRepository.findUserByEmailAndAndPassword(email, password).stream()
-                .filter(e -> e.getAge() > 18)
-                .findFirst().isEmpty()) {
+        } else if (userRepository.findByEmail(email).stream().filter(e -> e.getAge() > 18).findFirst().isEmpty()) {
             return "reg/errors-small-user";
         } else {
             userService.getUser(email, password, model);

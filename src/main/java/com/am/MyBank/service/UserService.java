@@ -4,7 +4,7 @@ import com.am.MyBank.model.User;
 import org.springframework.ui.Model;
 
 public interface UserService {
-    public User addUser(User user);
+    User createUser(User user);
 
-    public Model getUser(String email, String password, Model model);
+    Model getUser(String email, String password, Model model);
 }
