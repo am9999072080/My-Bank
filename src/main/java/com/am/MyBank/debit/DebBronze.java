@@ -8,11 +8,10 @@ import java.util.Objects;
 
 @Setter
 @Getter
-public class DebCash extends DebitCard {
-    private final double bonusForBuy = 0.01;
+public class DebBronze extends DebitCard {
+    private final double cashBackForBuy = 0.01;
 
-
-    public DebCash(Card card) {
+    public DebBronze(Card card) {
         super(card);
     }
 
@@ -21,8 +20,8 @@ public class DebCash extends DebitCard {
         double d;
         if (super.pay(amount)) {
             if (getCard().getBalance() >= amount) {
-                d = amount * bonusForBuy;
-                getCard().setBonus(getCard().getBonus() + d);
+                d = amount * cashBackForBuy;
+                getCard().setCashBack(getCard().getCashBack() + d);
                 getCard().setBalance(getCard().getBalance() - amount);
                 System.out.print("ПОКУПКА: " + -amount);
 
@@ -35,19 +34,20 @@ public class DebCash extends DebitCard {
     }
 
     public double getBonusForBuy() {
-        return bonusForBuy;
+        return cashBackForBuy;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DebCash debCash = (DebCash) o;
-        return Double.compare(bonusForBuy, debCash.bonusForBuy) == 0;
+        if (!super.equals(o)) return false;
+        DebBronze debBronze = (DebBronze) o;
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bonusForBuy);
+        return Objects.hash(super.hashCode(), cashBackForBuy);
     }
 }

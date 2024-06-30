@@ -1,12 +1,14 @@
-package com.am.MyBank;
+package com.am.MyBank.model;
 
-import com.am.MyBank.model.Card;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
+@Getter
+@Setter
 public abstract class BankCard {
-    private final Card card;
-
+    Card card;
 
     public BankCard(Card card) {
         this.card = card;
@@ -46,10 +48,6 @@ public abstract class BankCard {
         return card.getBalance() + "";
     }
 
-    public Card getCard() {
-        return card;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,3 +61,4 @@ public abstract class BankCard {
         return Objects.hash(card);
     }
 }
+

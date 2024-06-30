@@ -8,11 +8,11 @@ import java.util.Objects;
 
 @Setter
 @Getter
-public class DebBigBonus extends DebCash {
+public class DebitSilver extends DebBronze {
     private final double potentialCash = 0.05;
     private final double bigAmount = 5000;
 
-    public DebBigBonus(Card card) {
+    public DebitSilver(Card card) {
         super(card);
     }
 
@@ -23,23 +23,15 @@ public class DebBigBonus extends DebCash {
         if (amount >= 5000) {
             d = amount * potentialCash;
             System.out.print(", Потенциал кешбэк: " + d);
-            getCard().setBonus(getCard().getBonus() + d);
+            getCard().setCashBack(getCard().getCashBack() + d);
         }
-        System.out.print(", Кешбэк всего: " + getCard().getBonus());
+        System.out.print(", Кешбэк всего: " + getCard().getCashBack());
         return true;
     }
 
     @Override
     public String checkAllBalance() {
-        return "\nDEBIT BALANCE: " + String.format("%.2f", getCard().getBalance()) + " CASHBACK " + String.format("%.2f", getCard().getBonus());
-    }
-
-    public double getPotentialCash() {
-        return potentialCash;
-    }
-
-    public double getBigAmount() {
-        return bigAmount;
+        return "\nDEBIT BALANCE: " + String.format("%.2f", getCard().getBalance()) + " CASHBACK " + String.format("%.2f", getCard().getCashBack());
     }
 
     @Override
@@ -47,8 +39,8 @@ public class DebBigBonus extends DebCash {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        DebBigBonus that = (DebBigBonus) o;
-        return Double.compare(potentialCash, that.potentialCash) == 0 && Double.compare(bigAmount, that.bigAmount) == 0;
+        DebitSilver that = (DebitSilver) o;
+        return true;
     }
 
     @Override

@@ -1,10 +1,10 @@
 package com.am.MyBank.debit;
 
-import com.am.MyBank.BankCard;
+
+import com.am.MyBank.model.BankCard;
 import com.am.MyBank.model.Card;
 import lombok.Getter;
 import lombok.Setter;
-
 @Setter
 @Getter
 public class DebitCard extends BankCard {
@@ -27,3 +27,5 @@ public class DebitCard extends BankCard {
         return getCard().getBalance();
     }
 }
+
+

@@ -1,60 +1,71 @@
 package com.am.MyBank.controller;
 
 import com.am.MyBank.model.User;
-
-import com.am.MyBank.repository.UserRepository;
-import com.am.MyBank.service.UserService;
+import com.am.MyBank.service.impl.UserServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@AllArgsConstructor
+
 @Controller
+@AllArgsConstructor
 public class UserController {
-    private final UserService userService;
 
     @Autowired
-    private UserRepository userRepository;
+    UserServiceImpl userService;
+
+    @GetMapping("/")
+    public String main(Authentication authentication, Model model) {
+        if (userService.get(authentication).getAge() < 18) {
+            return "reg/errors-small-user";
+        } else {
+            model.addAttribute("users", userService.getAll());
+            return "reg/main";
+        }
+    }
+
+    @GetMapping("/aut")
+    public String aut(Authentication authentication, Model model) {
+        model.addAttribute("meruzhan", userService.getUserAut(authentication));
+
+        return "reg/main";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "reg/login";
+    }
 
 
     @GetMapping("/registration")
-    public String login(Model model) {
-        Iterable<User> userAdd = userRepository.findAll();
-        model.addAttribute("userAdd", userAdd);
-        return "reg/user-add-main";
+    public String registration(Model model){
+        model.addAttribute("user", new User());
+        return "reg/registration";
     }
-
-    @GetMapping("/user/add")
-    public String userAdd(Model model) {
-        return "reg/user-add";
-    }
-
-    @PostMapping("/user/add")
-    public String userPostAdd(@Validated User user, Model model) {
-        if (userService.createUser(user) == null) {
+    @PostMapping("/registration")
+    public String registration(@ModelAttribute("user") User user, Model model) {
+        if (userService.saveUser(user) == null) {
             return "reg/errors-user-add";
         } else if (user.getAge() < 18) {
-            userService.createUser(user);
-            return "reg/errors-small-user";
+            return "reg/error-small-reg";
         } else {
-            userService.createUser(user);
-            return "redirect:/registration";
+            return "reg/user-home";
         }
     }
 
-    @GetMapping("/get/user")
-    public String getUser(@RequestParam String email, @Validated String password, Model model) {
-        if ((userService.getUser(email, password, model) == null)) {
-            return "reg/errors-user-get";
-        } else if (userRepository.findByEmail(email).stream().filter(e -> e.getAge() > 18).findFirst().isEmpty()) {
-            return "reg/errors-small-user";
-        } else {
-            userService.getUser(email, password, model);
-            System.out.println(email + "   " + password);
-            return "reg/user-details";
-        }
+    @GetMapping("/user/{id}/remove")
+    public String getAccount(@PathVariable (value = "id") Long id, Model model){
+        userService.getUserById(id, model);
+        return "/";
+    }
+
+    @PostMapping("/user/{id}/remove")
+    public String deleteAccount(@PathVariable(value = "id") Long id, Model model){
+        userService.userDelete(id, model);
+        System.out.println(id);
+        return "redirect:/";
     }
 }

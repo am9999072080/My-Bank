@@ -1,65 +1,86 @@
 package com.am.MyBank.service.impl;
 
+import com.am.MyBank.debit.DebitGold;
+import com.am.MyBank.model.Card;
 import com.am.MyBank.model.User;
+
+import com.am.MyBank.repository.DebitRepository;
 import com.am.MyBank.repository.UserRepository;
 
 
 import com.am.MyBank.service.UserService;
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
-import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private final UserRepository userRepository;
 
-    String encode = BCrypt.gensalt();
+    UserRepository userRepository;
+    DebitRepository debitRepository;
+
+    private BCryptPasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+
+
 
     @Override
-    public User createUser(User user) {
-        User u = new User();
-        u.setFirstName(user.getFirstName());
-        u.setLastName(user.getLastName());
-        u.setMiddleName(user.getMiddleName());
-        u.setPhoneNumber(user.getPhoneNumber());
-        u.setDateOfBirth(user.getDateOfBirth());
-        u.setEmail(user.getEmail());
-
-        u.setPassword(user.getPassword());
-        u.setPassword(BCrypt.hashpw(user.getPassword(), encode));
+    public User saveUser(User user) {
 
         if (userRepository.findByEmail(user.getEmail()).isPresent() || userRepository.findByPhoneNumber(user.getPhoneNumber()).isPresent()) {
             return null;
         } else {
-            return userRepository.save(u);
+            Card card = new Card();
+            user.setCard(new DebitGold(card).getCard());
+            debitRepository.save(card);
+            user.setPassword(encoder().encode(user.getPassword()));
+            return userRepository.save(user);
         }
+    }
+
+
+
+    @Override
+    public User get(Authentication authentication) {
+        Optional<User> optional = userRepository.findByEmail(authentication.getName());
+        ArrayList<User> res = new ArrayList<>();
+        optional.ifPresent(res::add);
+        System.out.println(res.get(authentication.getName().indexOf(authentication.getName())).getEmail());
+        return res.get(authentication.getName().indexOf(authentication.getName()));
     }
 
     @Override
-    public Model getUser(String email, String password, Model model) {
+    public User getUserAut(Authentication authentication) {
+        return get(authentication);
+    }
 
-        if (userRepository.findByEmail(email).isEmpty() || !(BCrypt.checkpw(password, userRepository.findByEmail(email).get().getPassword()))) {
+    @Override
+    public void getUserById(Long id, Model model) {
+        Optional<User> u = userRepository.findById(id);
+        ArrayList<User> res = new ArrayList<>();
+        u.ifPresent(res::add);
+        model.addAttribute("user", res);
+    }
 
-            return null;
-        } else {
+    @Override
+    public void userDelete(long id, Model model) {
+        User user = userRepository.findById(id).orElseThrow();
+        userRepository.delete(user);
+    }
 
-            Optional<User> optional = userRepository.findUserByEmailAndAndPassword(email, BCrypt.hashpw(password, userRepository.findByEmail(email).orElseThrow().getPassword()));
-
-            ArrayList<User> res = new ArrayList<>();
-            optional.ifPresent(res::add);
-
-            return model.addAttribute("get", res);
-        }
+    @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 }
+

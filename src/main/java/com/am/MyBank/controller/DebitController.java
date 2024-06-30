@@ -1,71 +1,59 @@
 package com.am.MyBank.controller;
 
-import com.am.MyBank.model.Card;
-import com.am.MyBank.repository.DebitRepository;
 import com.am.MyBank.service.DebitService;
+import com.am.MyBank.service.UserService;
+import com.am.MyBank.service.impl.DebitServiceImpl;
+
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@AllArgsConstructor
 public class DebitController {
-
-    private final DebitService service;
-    public Card card;
-
-
     @Autowired
-    private DebitRepository repository;
-
-    public DebitController(DebitService service) {
-        this.service = service;
-    }
-
+    DebitService service;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/debit")
-    public String debitAddMain(Model model) {
-        Iterable<Card> cardAdd = repository.findAll();
-        model.addAttribute("cardAdd", cardAdd);
-        return "debit-add-main";
+    public String debitAddMain(Authentication authentication,Model model) {
+        model.addAttribute("card", service.getAll());
+        return "redirect:/";
+
     }
 
     @GetMapping("/debit/add")
     public String debitAdd(Model model) {
-        return "debit-add";
+        return "/aut";
     }
 
     @PostMapping("/debit/add")
-    public String debitPostAdd(@RequestParam double balance, Model model) {
-        service.addBalance(balance);
-        return "redirect:/debit";
+    public String debitPostAdd(@RequestParam double balance,Authentication authentication, Model model) {
+        service.addBalance(balance, authentication);
+        return "redirect:/aut";
     }
+
+
+
 
     @GetMapping("/debit/pay")
     public String debitPay(Model model) {
-        return "debit-add";
+        return "/aut";
     }
 
     @PostMapping("/debit/pay")
-    public String debitPostPay(@RequestParam double balance, Model model) {
+    public String debitPostPay(@RequestParam double balance, Authentication authentication, Model model) {
+        if(service.pay(balance, authentication)==null){
+            return "debit/error-transaction";
+        }
+        service.pay(balance, authentication);
 
-        service.pay(balance);
-
-        return "redirect:/debit";
-    }
-
-    @GetMapping("/get")
-    public String get(Model model) {
-        Iterable<Card> cardGet = repository.findAll();
-        model.addAttribute("cardGet", cardGet);
-        service.getAllBalance();
-        return "debit-get-main";
-    }
-
-    @GetMapping("/get/all")
-    public String getAll(Model model) {
-        return "redirect:/get";
+        return "redirect:/aut";
     }
 }
+

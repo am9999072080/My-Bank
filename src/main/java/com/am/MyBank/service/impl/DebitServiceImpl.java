@@ -1,56 +1,57 @@
 package com.am.MyBank.service.impl;
 
-import com.am.MyBank.BankCard;
-import com.am.MyBank.debit.DebAccumulation;
+import com.am.MyBank.debit.DebitGold;
+import com.am.MyBank.model.BankCard;
 import com.am.MyBank.model.Card;
+import com.am.MyBank.model.User;
 import com.am.MyBank.repository.DebitRepository;
+import com.am.MyBank.repository.UserRepository;
 import com.am.MyBank.service.DebitService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class DebitServiceImpl implements DebitService {
-    private final DebitRepository repository;
-    public LocalDateTime time = LocalDateTime.now();
+    @Autowired
+    DebitRepository repository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    UserServiceImpl userService;
 
-    private final Card card = new Card();
 
-    private final BankCard bankcard = new DebAccumulation(card);
+    @Override
+    public Card addBalance(double amount, Authentication authentication) {
+        User user = userService.get(authentication);
+        BankCard debitGold = new DebitGold(user.getCard());
+        debitGold.addBalance(amount);
 
-
-    public String formatTime() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        return time.format(format);
+        user.getCard().setAllBalance(debitGold.checkAllBalance());
+        userRepository.save(user);
+        return repository.save(user.getCard());
     }
 
     @Override
-    public Card addBalance(double amount) {
-        bankcard.addBalance(amount);
-        card.setBalance(bankcard.getCard().getBalance());
-        card.setBonus(bankcard.getCard().getBonus());
-        card.setAccumulation(bankcard.getCard().getAccumulation());
-        card.setDate(formatTime());
-        card.setAllBalance(bankcard.checkAllBalance());
-        return repository.save(card);
+    public Card pay(double amount, Authentication authentication) {
+        User user = userService.get(authentication);
+        if (user.getCard().getBalance() < amount) {
+            return null;
+        } else {
+            BankCard bankcard = new DebitGold(user.getCard());
+            bankcard.pay(amount);
+            userRepository.save(user);
+            return repository.save(user.getCard());
+        }
     }
 
-    @Override
-    public Card pay(double amount) {
-        bankcard.pay(amount);
-        card.setBalance(bankcard.getCard().getBalance());
-        card.setBonus(bankcard.getCard().getBonus());
-        card.setAccumulation(bankcard.getCard().getAccumulation());
-        card.setDate(formatTime());
-        card.setAllBalance(bankcard.checkAllBalance());
-        return repository.save(card);
-    }
 
     @Override
-    public String getAllBalance() {
-        return bankcard.getCard().getAllBalance();
+    public List<Card> getAll() {
+        return repository.findAll();
     }
 }

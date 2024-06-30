@@ -1,15 +1,20 @@
 package com.am.MyBank.controller;
-
+import com.am.MyBank.service.impl.UserServiceImpl;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@AllArgsConstructor
 public class MainController {
+    @Autowired
+    UserServiceImpl userService;
 
-    @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("title", "_BEST BANK ACCOUNT_");
+    @GetMapping("/home")
+    public String iCan(Model model) {
+        model.addAttribute("title", "_BEST MyBank ACCOUNT_");
         return "home";
     }
 
@@ -21,14 +26,7 @@ public class MainController {
 
     @GetMapping("/about")
     public String about(Model model) {
-        model.addAttribute("title", "Преимущества и недостатки банковских карт");
+        model.addAttribute("title", "Преимущества MyBank карт и недостатки НЕ MyBank карт");
         return "about";
     }
-
-    @GetMapping("/login")
-    public String log(Model model) {
-        model.addAttribute("title", "_Login_");
-        return "reg/user";
-    }
-
 }
