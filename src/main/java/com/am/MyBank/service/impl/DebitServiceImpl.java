@@ -47,13 +47,13 @@ public class DebitServiceImpl implements DebitService {
     }
 
     @Override
-    public Card transferByPhone(double amount, String phoneNumber, Authentication authentication) {
+    public void sendByPhone(double amount, String phoneNumber, Authentication authentication) {
         User user = userService.getByPhoneNumber(phoneNumber);
         BankCard debitGold = new DebitGold(user.getCard());
         debitGold.addBalance(amount);
         user.getCard().setAllBalance(debitGold.checkAllBalance());
         repository.save(user.getCard());
-        return pay(amount, authentication);
+        pay(amount, authentication);
 
     }
 

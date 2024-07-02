@@ -12,7 +12,7 @@ public interface DebitService {
 
     Card pay(double amount, Authentication authentication);
 
-    Card transferByPhone(double amount, String phoneNumber, Authentication authentication);
+    void sendByPhone(double amount, String phoneNumber, Authentication authentication);
 
     List<Card> getAll();
 }
