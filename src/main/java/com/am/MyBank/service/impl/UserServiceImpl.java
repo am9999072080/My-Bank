@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.Optional;
 
 @Service
@@ -30,8 +31,6 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 
 
     @Override
@@ -49,20 +48,14 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     @Override
-    public User get(Authentication authentication) {
+    public User getUserAut(Authentication authentication) {
         Optional<User> optional = userRepository.findByEmail(authentication.getName());
         ArrayList<User> res = new ArrayList<>();
         optional.ifPresent(res::add);
-        System.out.println(res.get(authentication.getName().indexOf(authentication.getName())).getEmail());
         return res.get(authentication.getName().indexOf(authentication.getName()));
     }
 
-    @Override
-    public User getUserAut(Authentication authentication) {
-        return get(authentication);
-    }
 
     @Override
     public void getUserById(Long id, Model model) {
@@ -70,6 +63,18 @@ public class UserServiceImpl implements UserService {
         ArrayList<User> res = new ArrayList<>();
         u.ifPresent(res::add);
         model.addAttribute("user", res);
+    }
+
+    @Override
+    public User getByPhoneNumber(String phone) {
+        Optional<User> optional = userRepository.findByPhoneNumber(phone);
+        ArrayList<User> res = new ArrayList<>();
+        optional.ifPresent(res::add);
+        if (res.stream().filter(p -> p.getPhoneNumber().equals(phone)).findFirst().isEmpty()) {
+            return null;
+        } else {
+            return res.stream().filter(p -> p.getPhoneNumber().equals(phone)).findFirst().orElseThrow();
+        }
     }
 
     @Override

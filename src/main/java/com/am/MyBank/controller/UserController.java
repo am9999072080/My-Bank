@@ -19,7 +19,7 @@ public class UserController {
 
     @GetMapping("/")
     public String main(Authentication authentication, Model model) {
-        if (userService.get(authentication).getAge() < 18) {
+        if (userService.getUserAut(authentication).getAge() < 18) {
             return "reg/errors-small-user";
         } else {
             model.addAttribute("users", userService.getAll());
@@ -29,22 +29,23 @@ public class UserController {
 
     @GetMapping("/aut")
     public String aut(Authentication authentication, Model model) {
-        model.addAttribute("meruzhan", userService.getUserAut(authentication));
+        model.addAttribute("me", userService.getUserAut(authentication));
 
         return "reg/main";
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "reg/login";
     }
 
 
     @GetMapping("/registration")
-    public String registration(Model model){
+    public String registration(Model model) {
         model.addAttribute("user", new User());
         return "reg/registration";
     }
+
     @PostMapping("/registration")
     public String registration(@ModelAttribute("user") User user, Model model) {
         if (userService.saveUser(user) == null) {
@@ -57,15 +58,14 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}/remove")
-    public String getAccount(@PathVariable (value = "id") Long id, Model model){
+    public String getAccount(@PathVariable(value = "id") Long id, Model model) {
         userService.getUserById(id, model);
         return "/";
     }
 
     @PostMapping("/user/{id}/remove")
-    public String deleteAccount(@PathVariable(value = "id") Long id, Model model){
+    public String deleteAccount(@PathVariable(value = "id") Long id, Model model) {
         userService.userDelete(id, model);
-        System.out.println(id);
         return "redirect:/";
     }
 }

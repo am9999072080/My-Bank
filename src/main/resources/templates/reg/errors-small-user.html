@@ -11,8 +11,6 @@
 <body>
 
 
-
-
 <div class="container">
 
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvtxRhJJPQyDhEVbrUT9cUSLAPM4KBnocZIQ&amp;usqp=CAU"
@@ -21,8 +19,11 @@
 </div>
 
 <thead sec:authorize="hasAuthority('USER')">
-<h3 style="text-align:center" th:text="${#authentication.getPrincipal.getFirstName()}+'&ensp;'+ ${#authentication.getPrincipal.getLastName()}+'&ensp;'+ ${#authentication.getPrincipal.getMiddleName()}+ '&emsp;ВЫ ЗАШЛИ КАК USER'"></h3>
-
+<h4 style="text-align:center"
+    th:text="${#authentication.getPrincipal.getFirstName()}+'&ensp;'+ ${#authentication.getPrincipal.getLastName()}+'&ensp;'+ ${#authentication.getPrincipal.getMiddleName()}+ '&emsp;ВЫ ЗАШЛИ КАК USER'"></h4>
+<!--<h3 style="text-align:center" th:text="${#authentication.getPrincipal.getCard.getBalance()}+'&ensp;'+ ${#authentication.getPrincipal.getCard.getBonus()}+'&ensp;'+ ${#authentication.getPrincipal.getCard.getCashBack()}+ '&emsp;КАРТА USER'"></h3>-->
+<h4 style="text-align:center"
+    th:text="${#authentication.getPrincipal.getCard.getAllBalance()}+ '&emsp;!ВАШИ СРЕДСТВА В БЕЗОПАСНОСТИ!'"></h4>
 
 <div style="text-align: center;">
 
@@ -49,12 +50,10 @@
                 height="30">
 
         </a><br>
-        <form th:action="@{/logout}" method="post" >&#128073
+        <form th:action="@{/logout}" method="post">&#128073
             <input type="submit" value="ВЫХОД">
         </form>
-    </h5><br>
-
-
+    </h5>
 
 </div>
 

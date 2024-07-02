@@ -10,9 +10,9 @@ import java.util.List;
 public interface UserService {
     User saveUser(User user);
 
-    User get(Authentication authentication);
-
     User getUserAut(Authentication authentication);
+
+    User getByPhoneNumber(String phone);
 
     void getUserById(Long id, Model model);
 

@@ -18,24 +18,19 @@ public class DebBronze extends DebitCard {
     @Override
     public boolean pay(double amount) throws NullPointerException {
         double d;
-        if (super.pay(amount)) {
-            if (getCard().getBalance() >= amount) {
-                d = amount * cashBackForBuy;
-                getCard().setCashBack(getCard().getCashBack() + d);
-                getCard().setBalance(getCard().getBalance() - amount);
-                System.out.print("ПОКУПКА: " + -amount);
+        if (getCard().getBalance() >= amount) {
+            d = amount * cashBackForBuy;
+            getCard().setCashBack(getCard().getCashBack() + d);
+            getCard().setBalance(getCard().getBalance() - amount);
+            System.out.print("ПОКУПКА: " + -amount);
 
-                System.out.print(", Базовый кешбэк: " + d);
-            } else {
-                throw new NullPointerException("Недостаточно средств!");
-            }
+            System.out.print(", Базовый кешбэк: " + d);
+            return super.pay(amount);
+        } else {
+            throw new NullPointerException("Недостаточно средств!");
         }
-        return super.pay(amount);
     }
 
-    public double getBonusForBuy() {
-        return cashBackForBuy;
-    }
 
     @Override
     public boolean equals(Object o) {

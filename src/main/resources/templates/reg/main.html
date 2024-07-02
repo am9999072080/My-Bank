@@ -38,6 +38,7 @@
 
 
         <th>
+
             <form th:action="'/user/' + ${el.id} + '/remove'" method="post">
                 <button class="btn btn-warning" type="submit">Удалить</button>
             </form>
@@ -61,7 +62,7 @@
     <th scope="col">cashback</th>
     <th scope="col">dateTame</th>
 
-    <tr th:each="el: ${meruzhan}">
+    <tr th:each="el: ${me}">
 
         <th th:text="${el.getCard().getId()}" scope="row">id</th>
         <th scope="row">Debit Gold</th>
@@ -74,17 +75,30 @@
 
     <div class="container mt-5 mb-5">
         <form action="/debit/add" method="post">
-            <h2>Пополнить _Debit Gold_ без комиссии:</h2>
-            <span>Введите нужную сумму для пополнения. Проверяя правильность указанной суммы, нажмите «ПОПОЛНИТЬ».</span>
-            <input type="text" name="balance" pattern="\d+" title=" Только положительные целые числа">
+            <h3>ПОПОЛНИТЬ /без комиссии/:</h3>
+            <span>Проверяя правильность указанной суммы для пополнения, нажмите «ПОПОЛНИТЬ».&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;</span>
+            <input type="text" name="balance" pattern="\d+" title=" Только положительные целые числа"
+                   placeholder="СУММА" required>
             <button type="submit" class="btn btn-success">ПОПОЛНИТЬ</button>
             <br>
         </form>
         <form action="/debit/pay" method="post">
-            <h2>Вывести из _Debit Gold_ средства без комиссии:</h2>
-            <span>Введите нужную сумму для оплаты. Проверяя правильность указанной суммы, нажмите «ОПЛАТИТЬ». &emsp;&emsp;&emsp;</span>
-            <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа">
+            <h3>ОПЛАТИТЬ /без комиссии/:</h3>
+            <span>Проверяя правильность указанной суммы для оплаты, нажмите «ОПЛАТИТЬ».&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</span>
+            <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа"
+                   placeholder="СУММА" required>
             <button type="submit" class="btn btn-success">&ensp;ОПЛАТИТЬ&ensp;</button>
+            <br>
+        </form>
+        <form action="/debit/send" method=post>
+            <h3>ПЕРЕРЕВОД ПО ТЕЛЕФОНУ /без комиссии/:</h3>
+            <span>Проверяя правильность указанной суммы и номер телефона для перевода, нажмите «ПЕРЕВЕСТИ».&ensp;</span>
+            <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа"
+                   placeholder="СУММА" required>
+            <input type="tel" name="phoneNumber" pattern="^(\+7|8)(\d{10})$" id="phoneNumber"
+                   placeholder="НОМЕР ТЕЛЕФОНА" required>
+
+            <button type="submit" class="btn btn-success">&ensp;ПЕРЕВЕСТИ&ensp;</button>
             <br>
         </form>
     </div>

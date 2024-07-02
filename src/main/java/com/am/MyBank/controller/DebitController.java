@@ -2,7 +2,6 @@ package com.am.MyBank.controller;
 
 import com.am.MyBank.service.DebitService;
 import com.am.MyBank.service.UserService;
-import com.am.MyBank.service.impl.DebitServiceImpl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class DebitController {
     UserService userService;
 
     @GetMapping("/debit")
-    public String debitAddMain(Authentication authentication,Model model) {
+    public String debitAddMain(Model model) {
         model.addAttribute("card", service.getAll());
         return "redirect:/";
 
@@ -33,12 +32,10 @@ public class DebitController {
     }
 
     @PostMapping("/debit/add")
-    public String debitPostAdd(@RequestParam double balance,Authentication authentication, Model model) {
+    public String debitPostAdd(@RequestParam double balance, Authentication authentication, Model model) {
         service.addBalance(balance, authentication);
         return "redirect:/aut";
     }
-
-
 
 
     @GetMapping("/debit/pay")
@@ -48,12 +45,29 @@ public class DebitController {
 
     @PostMapping("/debit/pay")
     public String debitPostPay(@RequestParam double balance, Authentication authentication, Model model) {
-        if(service.pay(balance, authentication)==null){
+        if (userService.getUserAut(authentication).getCard().getBalance() < balance) {
             return "debit/error-transaction";
+        } else {
+            service.pay(balance, authentication);
+            return "redirect:/aut";
         }
-        service.pay(balance, authentication);
+    }
 
-        return "redirect:/aut";
+    @GetMapping("/debit/send")
+    public String transferByPhone(Model model) {
+        return "/aut";
+    }
+
+    @PostMapping("/debit/send")
+    public String transferByPhone(@RequestParam double balance, @RequestParam String phoneNumber, Authentication authentication, Model model) {
+        if (userService.getByPhoneNumber(phoneNumber) == null) {
+            return "reg/error-phone-number";
+        } else if (userService.getUserAut(authentication).getCard().getBalance() < balance) {
+            return "debit/error-transaction";
+        } else {
+            service.transferByPhone(balance, phoneNumber, authentication);
+            return "redirect:/aut";
+        }
     }
 }
 

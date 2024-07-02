@@ -3,6 +3,7 @@ package com.am.MyBank.debit;
 import com.am.MyBank.model.Card;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.Objects;
 
 @Setter
@@ -33,7 +34,6 @@ public class DebitGold extends DebitSilver {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        DebitGold debitGold = (DebitGold) o;
         return true;
     }
 

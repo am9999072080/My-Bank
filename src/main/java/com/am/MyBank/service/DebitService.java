@@ -1,6 +1,7 @@
 package com.am.MyBank.service;
 
 import com.am.MyBank.model.Card;
+
 import org.springframework.security.core.Authentication;
 
 
@@ -10,6 +11,8 @@ public interface DebitService {
     Card addBalance(double amount, Authentication authentication);
 
     Card pay(double amount, Authentication authentication);
+
+    Card transferByPhone(double amount, String phoneNumber, Authentication authentication);
 
     List<Card> getAll();
 }
