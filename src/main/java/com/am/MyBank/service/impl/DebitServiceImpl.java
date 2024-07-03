@@ -36,25 +36,23 @@ public class DebitServiceImpl implements DebitService {
     @Override
     public Card pay(double amount, Authentication authentication) {
         User user = userService.getUserAut(authentication);
+        BankCard debitGold = new DebitGold(user.getCard());
         if (user.getCard().getBalance() < amount) {
             return null;
         } else {
-            BankCard bankcard = new DebitGold(user.getCard());
-            bankcard.pay(amount);
-
+            debitGold.pay(amount);
             return repository.save(user.getCard());
         }
     }
 
     @Override
     public void sendByPhone(double amount, String phoneNumber, Authentication authentication) {
+        pay(amount, authentication);
         User user = userService.getByPhoneNumber(phoneNumber);
         BankCard debitGold = new DebitGold(user.getCard());
         debitGold.addBalance(amount);
         user.getCard().setAllBalance(debitGold.checkAllBalance());
         repository.save(user.getCard());
-        pay(amount, authentication);
-
     }
 
     @Override

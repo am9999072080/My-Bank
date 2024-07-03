@@ -45,10 +45,9 @@ public class DebitController {
 
     @PostMapping("/debit/pay")
     public String debitPostPay(@RequestParam double balance, Authentication authentication, Model model) {
-        if (userService.getUserAut(authentication).getCard().getBalance() < balance) {
+        if (service.pay(balance, authentication) == null) {
             return "card/error-transaction";
         } else {
-            service.pay(balance, authentication);
             return "redirect:/aut";
         }
     }
@@ -62,8 +61,6 @@ public class DebitController {
     public String transferByPhone(@RequestParam double balance, @RequestParam String phoneNumber, Authentication authentication, Model model) {
         if (userService.getByPhoneNumber(phoneNumber) == null) {
             return "reg/error-phone-number";
-        } else if (userService.getUserAut(authentication).getCard().getBalance() < balance) {
-            return "card/error-transaction";
         } else {
             service.sendByPhone(balance, phoneNumber, authentication);
             return "redirect:/aut";

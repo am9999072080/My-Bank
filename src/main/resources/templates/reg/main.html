@@ -7,14 +7,15 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
+
 <header th:insert="~{section1/header-auth::header}"></header>
 <body>
 
 
 <table class="table table-dark table-striped">
     <thead sec:authorize="hasAuthority('ADMIN')">
-    <h1 style="text-align:center"
-        th:text="${#authentication.getPrincipal.getFirstName()}+'&ensp;'+ ${#authentication.getPrincipal.getLastName()}+'&ensp;'+ ${#authentication.getPrincipal.getMiddleName()}+ '&emsp;ВЫ ЗАШЛИ КАК ADMIN'"></h1>
+    <h5 style="text-align:center"
+        th:text="${#authentication.getPrincipal.getFirstName()}+'&ensp;'+ ${#authentication.getPrincipal.getLastName()}+'&ensp;'+ ${#authentication.getPrincipal.getMiddleName()}+ '&emsp;ВЫ ЗАШЛИ КАК ADMIN'"></h5>
     <th scope="col">id</th>
     <th scope="col">firstName</th>
     <th scope="col">lastName</th>
@@ -43,8 +44,6 @@
                 <button class="btn btn-warning" type="submit">Удалить</button>
             </form>
         </th>
-
-
     </tr>
     </thead>
 </table>
@@ -52,20 +51,19 @@
 
 <table class="table table-dark table-striped">
     <thead sec:authorize="hasAuthority('USER')">
-    <h4 style="text-align:center"
-        th:text="${#authentication.getPrincipal.getFirstName()}+'&ensp;'+ ${#authentication.getPrincipal.getLastName()}+'&ensp;'+ ${#authentication.getPrincipal.getMiddleName()}+ '&emsp;ВЫ ЗАШЛИ КАК USER'"></h4>
+    <h5 style="text-align:center"
+        th:text="${#authentication.getPrincipal.getFirstName()}+'&ensp;'+ ${#authentication.getPrincipal.getLastName()}+'&ensp;'+ ${#authentication.getPrincipal.getMiddleName()}+ '&emsp;ВАША ДЕБЕТОВАЯ КАРТА'"></h5>
     <h5 style="text-align:center" th:text="${#authentication.getPrincipal.getCard.getAllBalance()}+'&ensp;'"></h5>
-    <th scope="col">id</th>
     <th scope="col">Name on Card</th>
+    <th scope="col">id</th>
     <th scope="col">balance</th>
     <th scope="col">bonus</th>
     <th scope="col">cashback</th>
     <th scope="col">dateTame</th>
 
     <tr th:each="el: ${me}">
-
-        <th th:text="${el.getCard().getId()}" scope="row">id</th>
         <th scope="row">Debit Gold</th>
+        <th th:text="${el.getCard().getId()}" scope="row">id</th>
         <th th:text="${el.getCard().getBalance()}" scope="row">balance</th>
         <th th:text="${el.getCard().getBonus()}" scope="row">bonus</th>
         <th th:text="${el.getCard().getCashBack()}" scope="row">cashBack</th>
@@ -75,7 +73,7 @@
 
     <div class="container mt-5 mb-5">
         <form action="/debit/add" method="post">
-            <h3>ПОПОЛНИТЬ /без комиссии/:</h3>
+            <h4>ПОПОЛНИТЬ /без комиссии/:</h4>
             <span>Проверяя правильность указанной суммы для пополнения, нажмите «ПОПОЛНИТЬ».&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;</span>
             <input type="text" name="balance" pattern="\d+" title=" Только положительные целые числа"
                    placeholder="СУММА" required>
@@ -83,7 +81,7 @@
             <br>
         </form>
         <form action="/debit/pay" method="post">
-            <h3>ОПЛАТИТЬ /без комиссии/:</h3>
+            <h4>ОПЛАТИТЬ /без комиссии/:</h4>
             <span>Проверяя правильность указанной суммы для оплаты, нажмите «ОПЛАТИТЬ».&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</span>
             <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа"
                    placeholder="СУММА" required>
@@ -91,7 +89,7 @@
             <br>
         </form>
         <form action="/debit/send" method=post>
-            <h3>ПЕРЕРЕВОД ПО ТЕЛЕФОНУ /без комиссии/:</h3>
+            <h4>ПЕРЕРЕВОД ПО ТЕЛЕФОНУ /без комиссии/:</h4>
             <span>Проверяя правильность указанной суммы и номер телефона для перевода, нажмите «ПЕРЕВЕСТИ».&ensp;</span>
             <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа"
                    placeholder="СУММА" required>
@@ -102,13 +100,72 @@
             <br>
         </form>
     </div>
-
     </thead>
 </table>
+
+
+<table class="table table-dark table-striped">
+    <thead sec:authorize="hasAuthority('USER')">
+    <h5 style="text-align:center"
+        th:text="${#authentication.getPrincipal.getFirstName()}+'&ensp;'+ ${#authentication.getPrincipal.getLastName()}+'&ensp;'+ ${#authentication.getPrincipal.getMiddleName()}+ '&emsp;ВАША КРЕДИТНАЯ КАРТА'"></h5>
+    <h5 style="text-align:center" th:text="${#authentication.getPrincipal.getCard.getAllBalance()}+'&ensp;'"></h5>
+    <th scope="col">Name on Card</th>
+    <th scope="col">id</th>
+    <th scope="col">balance</th>
+    <th scope="col">creditBalance</th>
+    <th scope="col">bonus</th>
+    <th scope="col">cashback</th>
+    <th scope="col">dateTame</th>
+
+    <tr th:each="el: ${me}">
+
+        <th scope="row">Credit Gold</th>
+        <th th:text="${el.getCard().getId()}" scope="row">id</th>
+        <th th:text="${el.getCard().getBalance()}" scope="row">balance</th>
+        <th th:text="${el.getCard().getCreditBalance()}" scope="row">creditBalance</th>
+        <th th:text="${el.getCard().getBonus()}" scope="row">bonus</th>
+        <th th:text="${el.getCard().getCashBack()}" scope="row">cashBack</th>
+        <th th:text="${el.getCard().getDate()}" scope="row">cashBack</th>
+
+    </tr>
+
+    <div class="container mt-5 mb-5">
+        <form action="/credit/add" method="post">
+            <h4>ПОПОЛНИТЬ /без комиссии/:</h4>
+            <span>Проверяя правильность указанной суммы для пополнения, нажмите «ПОПОЛНИТЬ».&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;</span>
+            <input type="text" name="balance" pattern="\d+" title=" Только положительные целые числа"
+                   placeholder="СУММА" required>
+            <button type="submit" class="btn btn-success">ПОПОЛНИТЬ</button>
+            <br>
+        </form>
+        <form action="/credit/pay" method="post">
+            <h4>ОПЛАТИТЬ /без комиссии/:</h4>
+            <span>Проверяя правильность указанной суммы для оплаты, нажмите «ОПЛАТИТЬ».&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</span>
+            <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа"
+                   placeholder="СУММА" required>
+            <button type="submit" class="btn btn-success">&ensp;ОПЛАТИТЬ&ensp;</button>
+            <br>
+        </form>
+        <form action="/credit/send" method=post>
+            <h4>ПЕРЕРЕВОД ПО ТЕЛЕФОНУ /без комиссии/:</h4>
+            <span>Проверяя правильность указанной суммы и номер телефона для перевода, нажмите «ПЕРЕВЕСТИ».&ensp;</span>
+            <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа"
+                   placeholder="СУММА" required>
+            <input type="tel" name="phoneNumber" pattern="^(\+7|8)(\d{10})$" id="phone"
+                   placeholder="НОМЕР ТЕЛЕФОНА" required>
+
+            <button type="submit" class="btn btn-success">&ensp;ПЕРЕВЕСТИ&ensp;</button>
+            <br>
+        </form>
+    </div>
+    </thead>
 </table>
 
+</thead>
+</table>
 
 <div th:insert="~{section1/footer-auth::footer}"></div>
 
 </body>
 </html>
+
