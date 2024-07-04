@@ -1,10 +1,10 @@
 >> My-Bank is an example of a simple project with basic functionality.
 
-![video ](https://github.com/am9999072080/My-Bank/assets/127240321/9e98ac48-0b85-4d90-b84d-b87143795475)
+![MyBank-video](https://github.com/am9999072080/My-Bank/assets/127240321/edc63f9a-f1ae-4061-8ff3-1dea53d29157)
 
 ### Service capabilities:
 
-* Register an account.
+* Register an account(USER/ADMIN).
 
 * Choose a bank card, DEBIT or CREDIT CARD.
 
