@@ -2,7 +2,7 @@
 
 ![video ](https://github.com/am9999072080/My-Bank/assets/127240321/9e98ac48-0b85-4d90-b84d-b87143795475)
 
-### How the service works:
+### Service capabilities:
 
 * Register an account.
 
