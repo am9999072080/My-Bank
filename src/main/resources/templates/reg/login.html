@@ -25,8 +25,12 @@
     </div>
     <form th:action="@{/login}" method="post">
         <form th:action="@{/login}" method="post">
-            <input type="text" name="username" placeholder="email" required>&emsp;&emsp;&emsp;&ensp;
-            <input type="password" name="password" minlength="6" placeholder="Пароль" required>&emsp;&emsp;&emsp;&ensp;
+            <label>
+                <input type="text" name="username" placeholder="email" required>
+            </label>&emsp;&emsp;&emsp;&ensp;
+            <label>
+                <input type="password" name="password" minlength="6" placeholder="Пароль" required>
+            </label>&emsp;&emsp;&emsp;&ensp;
             <button class="btn btn-primary btn-block create-account" type="submit">&emsp;&ensp;В Х О Д&emsp;&ensp;
             </button>
         </form>
@@ -36,7 +40,7 @@
                 <button class="btn btn-primary btn-block create-account" type="submit"> РЕГИСТРАЦИЯ</button>
             </div>
         </form>
-        <br><br><br>
+        <br><br><br><br>
     </form>
     <p class="mb-1">НАЗАД: &#128073 <a href="/home">BACK TO HOME</a></p>
 </div>

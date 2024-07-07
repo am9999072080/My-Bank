@@ -40,8 +40,7 @@ public class CreditSilver extends CreditBronze {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        CreditSilver that = (CreditSilver) o;
-        return Double.compare(potentialCash, that.potentialCash) == 0 && Double.compare(maxAmount, that.maxAmount) == 0;
+        return true;
     }
 
     @Override

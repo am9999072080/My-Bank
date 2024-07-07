@@ -26,25 +26,14 @@ public class CreditController {
 
     }
 
-    @GetMapping("/credit/add")
-    public String creditAdd(Model model) {
-        return "/aut";
-    }
-
     @PostMapping("/credit/add")
-    public String creditPostAdd(@RequestParam double balance, Authentication authentication, Model model) {
+    public String creditPostAdd(@RequestParam double balance, Authentication authentication) {
         service.addBalance(balance, authentication);
         return "redirect:/aut";
     }
 
-
-    @GetMapping("/credit/pay")
-    public String creditPay(Model model) {
-        return "/aut";
-    }
-
     @PostMapping("/credit/pay")
-    public String creditPostPay(@RequestParam double balance, Authentication authentication, Model model) {
+    public String creditPostPay(@RequestParam double balance, Authentication authentication) {
         if (service.pay(balance, authentication) == null) {
 
             return "card/error-transaction";
@@ -54,13 +43,8 @@ public class CreditController {
         }
     }
 
-    @GetMapping("/credit/send")
-    public String transferByPhone(Model model) {
-        return "/aut";
-    }
-
     @PostMapping("/credit/send")
-    public String transferByPhone(@RequestParam double balance, @RequestParam String phoneNumber, Authentication authentication, Model model) {
+    public String transferByPhone(@RequestParam double balance, @RequestParam String phoneNumber, Authentication authentication) {
         if (userService.getByPhoneNumber(phoneNumber) == null) {
             return "reg/error-phone-number";
         } else {

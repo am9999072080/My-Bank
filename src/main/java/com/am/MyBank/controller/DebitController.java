@@ -26,25 +26,14 @@ public class DebitController {
 
     }
 
-    @GetMapping("/debit/add")
-    public String debitAdd(Model model) {
-        return "/aut";
-    }
-
     @PostMapping("/debit/add")
-    public String debitPostAdd(@RequestParam double balance, Authentication authentication, Model model) {
+    public String debitPostAdd(@RequestParam double balance, Authentication authentication) {
         service.addBalance(balance, authentication);
         return "redirect:/aut";
     }
 
-
-    @GetMapping("/debit/pay")
-    public String debitPay(Model model) {
-        return "/aut";
-    }
-
     @PostMapping("/debit/pay")
-    public String debitPostPay(@RequestParam double balance, Authentication authentication, Model model) {
+    public String debitPostPay(@RequestParam double balance, Authentication authentication) {
         if (service.pay(balance, authentication) == null) {
             return "card/error-transaction";
         } else {
@@ -52,13 +41,8 @@ public class DebitController {
         }
     }
 
-    @GetMapping("/debit/send")
-    public String transferByPhone(Model model) {
-        return "/aut";
-    }
-
     @PostMapping("/debit/send")
-    public String transferByPhone(@RequestParam double balance, @RequestParam String phoneNumber, Authentication authentication, Model model) {
+    public String transferByPhone(@RequestParam double balance, @RequestParam String phoneNumber, Authentication authentication) {
         if (userService.getByPhoneNumber(phoneNumber) == null) {
             return "reg/error-phone-number";
         } else {

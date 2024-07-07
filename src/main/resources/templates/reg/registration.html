@@ -13,42 +13,49 @@
 <form style="text-align:center" th:action="@{/registration}" method="post" th:object="${user}">
     <div>
 
-        <input type="date" name="dateOfBirth" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"
-               id="dateOfBirth"
-               placeholder="Дата рождения" required>
+        <label for="dateOfBirth"></label><input type="date" name="dateOfBirth"
+                                                pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"
+                                                id="dateOfBirth"
+                                                placeholder="Дата рождения" required>
     </div>
     <br>
 
     <div>
 
-        <input type="text" name="firstName" maxlength="25" minlength="2" pattern="^[А-Я][a-я]{1,20}$" id="firstName"
-               placeholder="Имя" required>
+        <label for="firstName"></label><input type="text" name="firstName" maxlength="25" minlength="2"
+                                              pattern="^[А-Я][a-я]{1,20}$" id="firstName"
+                                              placeholder="Имя" required>
     </div>
     <br>
     <div>
-        <input type="text" name="lastName" maxlength="25" minlength="4" pattern="^[А-Я][a-я]{1,20}$" id="lastName"
-               placeholder="Фамилия" required>
+        <label for="lastName"></label><input type="text" name="lastName" maxlength="25" minlength="4"
+                                             pattern="^[А-Я][a-я]{1,20}$" id="lastName"
+                                             placeholder="Фамилия" required>
     </div>
     <br>
     <div>
-        <input type="text" name="middleName" maxlength="25" minlength="4" pattern="^[А-Я][a-я]{1,20}$" id="middleName"
-               placeholder="Отчество" required>
-    </div>
-    <br>
-    <div>
-
-        <input type="email" name="email" maxlength="25" minlength="4" pattern="^[a-zA-Z0-9_.-]*$" id="email"
-               placeholder="Email" required>
+        <label for="middleName"></label><input type="text" name="middleName" maxlength="25" minlength="4"
+                                               pattern="^[А-Я][a-я]{1,20}$" id="middleName"
+                                               placeholder="Отчество" required>
     </div>
     <br>
     <div>
 
-        <input type="tel" name="phoneNumber" pattern="^(\+7|8)(\d{10})$" id="phoneNumber"
-               placeholder="Номер телефона" required>
+        <label for="email"></label><input type="email" name="email" maxlength="25" minlength="4"
+                                          pattern="^[a-zA-Z0-9_.-]*$" id="email"
+                                          placeholder="Email" required>
     </div>
     <br>
-    <input type="password" name="password" minlength="6" pattern="^[a-zA-Z0-9]+$" id="password" placeholder="Пароль"
-           required>
+    <div>
+
+        <label for="phoneNumber"></label><input type="tel" name="phoneNumber" pattern="^(\+7|8)(\d{10})$"
+                                                id="phoneNumber"
+                                                placeholder="Номер телефона" required>
+    </div>
+    <br>
+    <label for="password"></label><input type="password" name="password" minlength="6" pattern="^[a-zA-Z0-9]+$"
+                                         id="password" placeholder="Пароль"
+                                         required>
     <div>
     </div>
     <br>
@@ -65,7 +72,6 @@
 
 <div th:insert="~{section1/footer::footer}"></div>
 
-</form>
 </body>
 >
 </html>

@@ -40,7 +40,7 @@ public class CreditBronze extends CreditCard {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         CreditBronze that = (CreditBronze) o;
-        return Double.compare(cashBackForBuy, that.cashBackForBuy) == 0 && Double.compare(bonus, that.bonus) == 0;
+        return Double.compare(bonus, that.bonus) == 0;
     }
 
     @Override

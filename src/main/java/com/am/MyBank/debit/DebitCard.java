@@ -1,6 +1,5 @@
 package com.am.MyBank.debit;
 
-
 import com.am.MyBank.model.BankCard;
 import com.am.MyBank.model.Card;
 import lombok.Getter;

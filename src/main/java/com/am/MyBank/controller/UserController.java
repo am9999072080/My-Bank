@@ -18,7 +18,7 @@ public class UserController {
     UserServiceImpl userService;
 
     @GetMapping("/")
-    public String main(Authentication authentication, Model model) {
+    public String getUserAut(Authentication authentication, Model model) {
         if (userService.getUserAut(authentication).getAge() < 18) {
             return "reg/errors-small-user";
         } else {
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("user") User user, Model model) {
+    public String registration(@ModelAttribute("user") User user) {
         if (userService.saveUser(user) == null) {
             return "reg/errors-user-add";
         } else if (user.getAge() < 18) {
