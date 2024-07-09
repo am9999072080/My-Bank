@@ -9,8 +9,6 @@
 
 
 <header th:insert="~{section1/header-auth::header}"></header>
-<body>
-
 
 <table class="table table-dark table-striped">
     <thead sec:authorize="hasAuthority('ADMIN')">
@@ -153,18 +151,12 @@
                    placeholder="СУММА" required>
             <input type="tel" name="phoneNumber" pattern="^(\+7|8)(\d{10})$" id="phone"
                    placeholder="НОМЕР ТЕЛЕФОНА" required>
-
             <button type="submit" class="btn btn-success">&ensp;ПЕРЕВЕСТИ&ensp;</button>
             <br>
         </form>
     </div>
     </thead>
 </table>
-
-</thead>
-</table>
-
 <div th:insert="~{section1/footer-auth::footer}"></div>
-
 </body>
 </html>

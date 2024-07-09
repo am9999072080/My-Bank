@@ -1,7 +1,8 @@
 package com.am.MyBank.controller;
 
 import com.am.MyBank.model.User;
-import com.am.MyBank.service.impl.UserServiceImpl;
+import com.am.MyBank.service.UserService;
+
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    UserServiceImpl userService;
+    private final UserService userService;
 
     @GetMapping("/")
     public String getUserAut(Authentication authentication, Model model) {
@@ -30,7 +31,6 @@ public class UserController {
     @GetMapping("/aut")
     public String aut(Authentication authentication, Model model) {
         model.addAttribute("me", userService.getUserAut(authentication));
-
         return "reg/main";
     }
 
@@ -67,5 +67,21 @@ public class UserController {
     public String deleteAccount(@PathVariable(value = "id") Long id, Model model) {
         userService.userDelete(id, model);
         return "redirect:/";
+    }
+
+
+    @GetMapping("/change-password")
+    public String updatePassword() {
+        return "reg/change-pass";
+    }
+        @PostMapping("/change-password")
+    public String updatePassword(Authentication authentication,
+                                 @RequestParam String newPassword,
+                                 @RequestParam String repeatPassword) {
+        if((userService.updatePassword(authentication, newPassword, repeatPassword))!=null) {
+            return "redirect:/";
+        }else {
+            return "redirect:/logout";
+        }
     }
 }

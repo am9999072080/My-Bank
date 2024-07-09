@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class DebitController {
     @Autowired
-    DebitService service;
+    private final DebitService service;
     @Autowired
-    UserService userService;
+    private final UserService userService;
 
     @GetMapping("/debit")
     public String debitAddMain(Model model) {

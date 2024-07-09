@@ -8,7 +8,7 @@ import com.am.MyBank.repository.CreditRepository;
 
 import com.am.MyBank.service.CreditService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +18,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CreditServiceImpl implements CreditService {
-    @Autowired
-    CreditRepository repository;
-    @Autowired
-    UserServiceImpl userService;
+
+    private final CreditRepository repository;
+
+    private final UserServiceImpl userService;
 
 
     @Override

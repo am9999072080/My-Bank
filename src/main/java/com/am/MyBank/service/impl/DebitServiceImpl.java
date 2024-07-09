@@ -8,7 +8,7 @@ import com.am.MyBank.repository.DebitRepository;
 
 import com.am.MyBank.service.DebitService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +18,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DebitServiceImpl implements DebitService {
-    @Autowired
-    DebitRepository repository;
-    @Autowired
-    UserServiceImpl userService;
+//    @Autowired
+    private final DebitRepository repository;
+//    @Autowired
+private final UserServiceImpl userService;
 
 
     @Override

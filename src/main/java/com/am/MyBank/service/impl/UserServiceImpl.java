@@ -7,12 +7,12 @@ import com.am.MyBank.model.User;
 import com.am.MyBank.repository.DebitRepository;
 import com.am.MyBank.repository.UserRepository;
 
-
 import com.am.MyBank.service.UserService;
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -25,8 +25,8 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    UserRepository userRepository;
-    DebitRepository debitRepository;
+    private final UserRepository userRepository;
+    private final DebitRepository debitRepository;
 
     private BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
@@ -80,12 +80,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public void userDelete(long id, Model model) {
         User user = userRepository.findById(id).orElseThrow();
-        userRepository.delete(user);
+        if (userRepository.findAll().size() > 1) {
+            userRepository.delete(user);
+        } else {
+            userRepository.findById(id);
+        }
     }
 
     @Override
     public List<User> getAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User updatePassword(Authentication authentication, String newPassword, String repeatPassword) {
+        User user = getUserAut(authentication);
+        if (!newPassword.equals(repeatPassword)) {
+            return null;
+        } else {
+            user.setPassword(encoder().encode(newPassword));
+            return userRepository.save(user);
+        }
     }
 }
 

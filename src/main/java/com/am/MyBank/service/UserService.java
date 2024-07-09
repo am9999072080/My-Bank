@@ -17,6 +17,6 @@ public interface UserService {
     void getUserById(Long id, Model model);
 
     void userDelete(long id, Model model);
-
+    User updatePassword(Authentication authentication, String newPassword, String repeatPassword);
     List<User> getAll();
 }
