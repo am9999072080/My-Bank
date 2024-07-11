@@ -19,7 +19,7 @@
                 }, 1000);
             </script>
 
-            <h3 style="text-align: center">&emsp;&emsp;ИЗМЕНИТЬ ПАРОЛЬ УЧЕТНОЙ ЗАПИСИ&ensp;&#128073&ensp;
+            <h3 style="text-align: center">&emsp;&emsp;ИЗМЕНИТЬ ПАРОЛЬ УЧЕТНОЙ ЗАПИСИ&ensp;&#128073
                 <button type="submit" class="btn"><a href="/change-password">&ensp;<img
                         src="https://ps.w.org/sg-security/assets/icon-256x256.gif?rev=2971855" jsaction="VQAsE"
                         class="sFlh5c pT0Scc iPVvYb" style="max-width: 75px; height: 75px; margin: 0px; width: 75px;"
@@ -32,7 +32,7 @@
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
 
             <h3 style="text-align:center"
-                th:text="'ВЫ В ЛИЧНОМ КАБИНЕТЕ. ВАШ ЛОГИН:&ensp;' + ${#authentication.getPrincipal.getEmail()} + '&emsp;&emsp;'"></h3>
+                th:text="'ВАШ ЛОГИН:&ensp;' + ${#authentication.getPrincipal.getEmail()} + '&emsp;&emsp;'"></h3>
             <a class="p-1 text-blue">
                 <form th:action="@{/logout}" method="post">&#128073
                     <input type="submit" value="ВЫХОД">
