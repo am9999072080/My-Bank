@@ -1,6 +1,6 @@
 >> My-Bank is an example of a simple project with a basic level of functionality.
 
-![MyVideo](https://github.com/user-attachments/assets/aa470032-8b36-47be-888e-bb9c44f8a3dd)
+![MyVideo.gif](https://github.com/user-attachments/assets/aa470032-8b36-47be-888e-bb9c44f8a3dd)
 
 ### Service capabilities:
 
