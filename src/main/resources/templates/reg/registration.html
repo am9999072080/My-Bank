@@ -11,6 +11,7 @@
 
 
 <form style="text-align:center" th:action="@{/registration}" method="post" th:object="${user}">
+    <h4 style='text-align: center;'> РЕГИСТРАЦИЯ В MyBank </h4><br>
     <div>
 
         <label for="dateOfBirth"></label><input type="date" name="dateOfBirth"
@@ -58,17 +59,17 @@
                                          required>
     <div>
     </div>
-    <br>
+    <br><br>
     <button class="btn btn-primary btn-block create-account" type="submit">&emsp;&ensp;Зарегистрироваться&emsp;&ensp;
     </button>
 
     <br>
 </form>
 <div style="text-align: center;">
-    <span style="font-size: 10px;">РЕГИСТРИРУЯСЬ В "MY-BANK", УКАЗЫВАЯ ИНФОРМАЦИЮ О СЕБЕ, ВЫ ДАЕТЕ СОГЛАСИЕ НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ</span>
+    <span style="font-size: 10px;">РЕГИСТРИРУЯСЬ В "MY-BANK", УКАЗЫВАЯ ИНФОРМАЦИЮ О СЕБЕ, ВЫ ДАЕТЕ СОГЛАСИЕ НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ</span><br><br><br>
     <p class="mb-1">НАЗАД: &#128073 <a href="/home">BACK TO HOME</a></p>
 </div>
-<br><br>
+<br>
 
 <div th:insert="~{section1/footer::footer}"></div>
 
