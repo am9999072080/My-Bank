@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<title th:text="${title}"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<body>
+
+<header th:insert="~{section1/header::header}"></header>
+<div class="container">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvtxRhJJPQyDhEVbrUT9cUSLAPM4KBnocZIQ&amp;usqp=CAU"
+         jsaction="VQAsE" class="sFlh5c pT0Scc" alt="MyBank - Home" jsname="JuXqh"
+         style="max-width: 1000px; width: 350px; height: 250px; margin: 0px;" data-iml="62817"><br><br>
+
+    <h1>ПОЗДРАВЛЯЕМ, ВЫ УСПЕШНО ЗАРЕГЕСТРИРОВАЛИСЬ В MyBank</h1><br><br>
+    <h1 class="mb-1">ВХОД В ЛИЧНЫЙ КАБИНЕТ: &#128073 <a href="/login">BACK TO AUTHORIZATION</a></h1><br><br><br>
+
+
+</div>
+<div th:insert="~{section1/footer::footer}"></div>
+</body>
+</html>

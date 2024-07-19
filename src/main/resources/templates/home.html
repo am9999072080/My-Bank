@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<title th:text="${title}"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="~{section1/header::header}"></header>
+
+
+<div class="container mt-1">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvtxRhJJPQyDhEVbrUT9cUSLAPM4KBnocZIQ&amp;usqp=CAU"
+         jsaction="VQAsE" class="sFlh5c pT0Scc" alt="MyBank - Home" jsname="JuXqh"
+         style="max-width: 1000px; width: 350px; height: 250px; margin: 0px;" data-iml="62817">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+    <img src="https://media.tenor.com/Trxl3FfZoIAAAAAM/very-good.gif" jsaction="" class="sFlh5c pT0Scc iPVvYb"
+         style="max-width: 220px; width: 220px; height: 220px; margin: 0px;"
+         alt="Very Good GIF - Very good - Discover &amp; Share GIFs" jsname="kn3ccd">
+    <img src="https://lottiefolder.com/wp-content/uploads/2022/11/bank-dollar-lottie-animation-1.gif" jsaction="VQAsE"
+         class="sFlh5c pT0Scc iPVvYb" style="max-width: 338px; height: 338px; margin: 1px; width: 338px;"
+         alt="Bank Icon Flat Design By 09910190 TheHungryJPEG" jsname="kn3ccd">
+
+    <section1 class="py-1 text-center container">
+        <h2 th:text="${title}"/>
+    </section1>
+
+
+    <div class="container mt-1">
+
+        <p class="lead text-body-secondary">
+        <h4 class="fw-light">Как работает сервис:</h4>
+        <li>Чтобы пользоваться приложением MyBank, зайдите в личный кабинет в MyBank&emsp;&#128073&emsp; <a
+                href="/login">В Х О Д</a>&emsp;&emsp;&emsp;&emsp;
+        </li>
+        <li>Пройдите регистрацию в MyBank и войдите в личный кабинет.</li>
+        <li>В MyBank выбираете подходящую операцию.</li>
+        <li>MyBank рассчитывает повышенный кэшбэк или бонусы за эту операцию и начисляет его на Ваш счет.</li>
+        <li>MyBank гарантирует защиту ваших данных за счет безопасного соединения между браузером и сервером и
+            сохранность ваших средств.
+        </li>
+        <li>Подробнее о выборе банковской карты в MyBank&emsp;&#128073&emsp;<a href="/about">О КАРТАХ</a></li>
+    </div>
+</div>
+
+
+<div th:insert="~{section1/footer::footer}"></div>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvtxRhJJPQyDhEVbrUT9cUSLAPM4KBnocZIQ&amp;usqp=CAU"
                      jsaction="VQAsE" class="sFlh5c pT0Scc" alt="MyBank - Home" jsname="JuXqh"
                      style="max-width: 800px; width: 120px; height: 80px; margin: 0px;" data-iml="62817">
-                <a> &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&ensp;<time id="currentTime"></time>
+                <a> &emsp;&emsp;&emsp;&emsp;&ensp;<time id="currentTime"></time>
                 </a>
 
             </svg>
@@ -19,14 +19,25 @@
                 }, 1000);
             </script>
 
+            <h3 style="text-align: center">&emsp;&emsp;ИЗМЕНИТЬ ПАРОЛЬ УЧЕТНОЙ ЗАПИСИ&ensp;&#128073
+                <button type="submit" class="btn"><a href="/change-password">&ensp;<img
+                        src="https://ps.w.org/sg-security/assets/icon-256x256.gif?rev=2971855" jsaction="VQAsE"
+                        class="sFlh5c pT0Scc iPVvYb" style="max-width: 75px; height: 75px; margin: 0px; width: 75px;"
+                        alt="Security Optimizer – The All-In-One Protection Plugin – WordPress plugin |  WordPress.org"
+                        jsname="kn3ccd">&ensp;</a></button>
+            </h3>
+            <br>
+
         </a>
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            <a class="p-4 text-blue" href="/home">ГЛАВНАЯ</a>
-            <a class="p-4 text-blue" href="/login">ЛИЧНЫЙ КАБИНЕТ</a>
-            <a class="p-4 text-dark" href="/exchange">ВАЛЮТНЫЙ ИНФОРМАТОР</a>
-            <a class="p-4 text-dark" href="/about">О КАРТАХ</a>
+
+            <h3 style="text-align:center"
+                th:text="'ВАШ ЛОГИН:&ensp;' + ${#authentication.getPrincipal.getEmail()} + '&emsp;&emsp;'"></h3>
+            <a class="p-1 text-blue">
+                <form th:action="@{/logout}" method="post">&#128073
+                    <input type="submit" value="ВЫХОД">
+                </form>
+            </a>
         </nav>
     </div>
 </div>
-
-

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<title th:text="${title}"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<body>
+<header th:insert="~{section1/header::header}"></header>
+
+
+<div class="container mt-5">
+    <h3 th:text="${title}"/><br>
+
+    <div class="container mt-10">
+        <p class="lead text-body-secondary">
+        <h2 class="fw-light">Плюсы MyBank карт:</h2>
+        <li>В MyBank есть круглосуточная онлайн-поддержка;</li>
+        <li>Безопасность в MyBank — безналичный расчет снижает риски кражи и ограбления;</li>
+        <li>MyBank — гарантии 100-процентной безопасности, защита от телефонных мошенников, подмены номеров и
+            СМС‑атак;
+        </li>
+        <li>Возможность — получения кредита. Услуга, которая позволяет списывать с расчетного счета больше денег, чем
+            осталось на момент платежа;
+        </li>
+        <li>MyBank начисляет стандартный и повышенный кэшбэк, а так же бонусы за пополнение любого счета.</li>
+        <br>
+        <h2 class="fw-light">Минусы НЕ MyBank карт:</h2>
+        <li>Дополнительные расходы;</li>
+        <li>Риски потери контроля над расходами;</li>
+        <li>Риски потери сбережения;</li>
+        <li>Карты принимаются не во всех торговых точках и банкоматах;</li>
+        <li>Ограничение использования.</li>
+        <br>
+    </div>
+    <br><br>
+    <p class="mb-1">НАЗАД: &#128073 <a href="/home">BACK TO HOME</a>
+</div>
+<br><br>
+<div th:insert="~{section1/footer::footer}"></div>
+
+</body>
+</html>

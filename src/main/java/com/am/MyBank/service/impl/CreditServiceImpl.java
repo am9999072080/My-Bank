@@ -1,12 +1,12 @@
 package com.am.MyBank.service.impl;
 
-import com.am.MyBank.debit.DebitGold;
+import com.am.MyBank.credit.CreditGold;
 import com.am.MyBank.model.BankCard;
 import com.am.MyBank.model.Card;
 import com.am.MyBank.model.User;
-import com.am.MyBank.repository.DebitRepository;
+import com.am.MyBank.repository.CreditRepository;
 
-import com.am.MyBank.service.DebitService;
+import com.am.MyBank.service.CreditService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.core.Authentication;
@@ -17,30 +17,30 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class DebitServiceImpl implements DebitService {
-//    @Autowired
-    private final DebitRepository repository;
-//    @Autowired
-private final UserServiceImpl userService;
+public class CreditServiceImpl implements CreditService {
+
+    private final CreditRepository repository;
+
+    private final UserServiceImpl userService;
 
 
     @Override
     public Card addBalance(double amount, Authentication authentication) {
         User user = userService.getUserAut(authentication);
-        BankCard debitGold = new DebitGold(user.getCard());
-        debitGold.addBalance(amount);
-        user.getCard().setAllBalance(debitGold.checkAllBalance());
+        BankCard creditGold = new CreditGold(user.getCard());
+        creditGold.addBalance(amount);
+        user.getCard().setAllBalance(creditGold.checkAllBalance());
         return repository.save(user.getCard());
     }
 
     @Override
     public Card pay(double amount, Authentication authentication) {
         User user = userService.getUserAut(authentication);
-        BankCard debitGold = new DebitGold(user.getCard());
-        if (user.getCard().getBalance() < amount) {
+        BankCard creditGold = new CreditGold(user.getCard());
+        if (user.getCard().getBalance() + user.getCard().getCreditBalance() < amount) {
             return null;
         } else {
-            debitGold.pay(amount);
+            creditGold.pay(amount);
             return repository.save(user.getCard());
         }
     }
@@ -49,10 +49,11 @@ private final UserServiceImpl userService;
     public void sendByPhone(double amount, String phoneNumber, Authentication authentication) {
         pay(amount, authentication);
         User user = userService.getByPhoneNumber(phoneNumber);
-        BankCard debitGold = new DebitGold(user.getCard());
-        debitGold.addBalance(amount);
-        user.getCard().setAllBalance(debitGold.checkAllBalance());
+        BankCard creditGold = new CreditGold(user.getCard());
+        creditGold.addBalance(amount);
+        user.getCard().setAllBalance(creditGold.checkAllBalance());
         repository.save(user.getCard());
+
     }
 
     @Override
