@@ -14,4 +14,4 @@
 
 * The increased cashback/bonus is calculated by the programme and credited to your account.
 
-   ![карта](https://github.com/am9999072080/My-Bank/assets/127240321/fec82254-2f19-4771-9497-4a075612cd0f)
+![карта](https://github.com/am9999072080/My-Bank/assets/127240321/fec82254-2f19-4771-9497-4a075612cd0f)
