@@ -27,7 +27,7 @@ public class CreditServiceImpl implements CreditService {
     @Override
     public Card addBalance(double amount, Authentication authentication) {
         User user = userService.getUserAut(authentication);
-        BankCard creditGold = new CreditGold(user.getCard());
+        CreditGold creditGold = new CreditGold(user.getCard());
         creditGold.addBalance(amount);
         user.getCard().setAllBalance(creditGold.checkAllBalance());
         return repository.save(user.getCard());
