@@ -36,7 +36,7 @@ public class DebitServiceImpl implements DebitService {
     @Override
     public Card pay(double amount, Authentication authentication) {
         User user = userService.getUserAut(authentication);
-        BankCard debitGold = new DebitGold(user.getCard());
+        DebitGold debitGold = new DebitGold(user.getCard());
         if (user.getCard().getBalance() < amount) {
             return null;
         } else {
