@@ -18,10 +18,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DebitServiceImpl implements DebitService {
-//    @Autowired
+
     private final DebitRepository repository;
-//    @Autowired
-private final UserServiceImpl userService;
+
+    private final UserServiceImpl userService;
 
 
     @Override
