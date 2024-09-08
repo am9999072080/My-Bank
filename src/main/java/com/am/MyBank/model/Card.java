@@ -8,11 +8,11 @@ import java.time.format.DateTimeFormatter;
 
 @Data
 @Entity
-@Table(name = "card")
+@Table
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     double balance;
     @Transient
     private final double creditLimit = 10_000;
@@ -32,6 +32,5 @@ public class Card {
 
         return getDateTime().format(format);
     }
-
 
 }
