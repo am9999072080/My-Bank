@@ -43,7 +43,7 @@ public class DebitController {
 
     @PostMapping("/debit/send")
     public String transferByPhone(@RequestParam double balance, @RequestParam String phoneNumber, Authentication authentication) {
-        if (userService.getByPhoneNumber(phoneNumber) == null) {
+        if (userService.getByPhoneNumber(phoneNumber) == null || userService.getByPhoneNumber(phoneNumber) == userService.getUserAut(authentication)) {
             return "reg/error-phone-number";
         } else {
             service.sendByPhone(balance, phoneNumber, authentication);

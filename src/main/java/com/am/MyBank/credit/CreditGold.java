@@ -16,18 +16,15 @@ public class CreditGold extends CreditSilver {
         super(card);
     }
 
-    public CreditGold(Card card, double accumulation) throws RuntimeException {
-        super(card);
-        this.accumulation = accumulation;
-    }
 
     @Override
     public void addBalance(double amount) {
         super.addBalance(amount);
         double d = amount * percentAccumulation;
         accumulation = accumulation + d;
-        System.out.print(", Начислено бонусов: " + d);
-        System.out.print(", Всего бонусов: " + accumulation);
+        getCard().setBonus(getCard().getBonus() + d);
+        System.out.print(", Накопление от пополнения: " + d);
+        System.out.print(", Баланс накопления: " + getCard().getBonus());
     }
 
     @Override
@@ -41,7 +38,7 @@ public class CreditGold extends CreditSilver {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         CreditGold that = (CreditGold) o;
-        return Double.compare(percentAccumulation, that.percentAccumulation) == 0 && Double.compare(accumulation, that.accumulation) == 0;
+        return Double.compare(accumulation, that.accumulation) == 0;
     }
 
     @Override

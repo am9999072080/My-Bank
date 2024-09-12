@@ -10,29 +10,21 @@ import java.util.Objects;
 @Setter
 public class CreditBronze extends CreditCard {
     private final double cashBackForBuy = 0.01;
-    private double bonus;
 
     public CreditBronze(Card card) throws RuntimeException {
         super(card);
     }
 
-    public CreditBronze(Card card, double bonus) throws RuntimeException {
-        super(card);
-        this.bonus = bonus;
-    }
 
     @Override
     public boolean pay(double amount) {
         double d;
-        if (super.pay(amount)) {
-            d = amount * cashBackForBuy;
-            bonus += d;
-            System.out.print(", Базовый кешбэк: " + d);
-        } else {
-            return super.pay(amount);
-        }
-        return true;
+        d = amount * cashBackForBuy;
+        getCard().setCashBack(getCard().getCashBack() + d);
+        System.out.print(", Базовый кешбэк: " + d);
+        return super.pay(amount);
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -40,11 +32,11 @@ public class CreditBronze extends CreditCard {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         CreditBronze that = (CreditBronze) o;
-        return Double.compare(bonus, that.bonus) == 0;
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), cashBackForBuy, bonus);
+        return Objects.hash(super.hashCode(), cashBackForBuy);
     }
 }

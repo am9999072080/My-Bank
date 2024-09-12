@@ -23,16 +23,14 @@ public class CreditSilver extends CreditBronze {
         double d;
         if (amount >= 5000) {
             d = amount * potentialCash;
-            setBonus(getBonus() + d);
             System.out.print(", Потенциал кешбэк: " + d);
         }
-        System.out.print(", Кешбэк всего: " + getBonus());
         return true;
     }
 
     @Override
     public String checkAllBalance() {
-        return super.checkAllBalance() + " CASHBACK " + String.format("%.2f", getBonus());
+        return super.checkAllBalance() + " CASHBACK ";
     }
 
     @Override

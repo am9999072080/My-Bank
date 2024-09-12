@@ -39,20 +39,18 @@ public class CreditCard extends BankCard {
     }
 
     @Override
-    public boolean pay(double amount) {
+    public boolean pay(double amount) throws NullPointerException {
         double d;
-        if (!(getCard().getBalance() + getCard().getCreditBalance() < amount)) {
-            if (getCard().getBalance() >= amount) {
-                getCard().setBalance(getCard().getBalance() - amount);
-                System.out.print("ПОКУПКА: " + amount + ", DEB: " + -amount + ", CRED: -0.0");
-            } else {
-                d = amount - getCard().getBalance();
-                System.out.print("ПОКУПКА: " + amount);
-                System.out.print(", DEB: " + -getCard().getBalance());
-                getCard().setBalance(0);
-                getCard().setCreditBalance(getCard().getCreditBalance() - d);
-                System.out.print(", CRED: " + -d);
-            }
+        if (getCard().getBalance() >= amount) {
+            getCard().setBalance(getCard().getBalance() - amount);
+            System.out.print("ПОКУПКА: " + amount + ", DEB: " + amount + ", CRED: -0.0");
+        } else if ((getCard().getBalance() + getCard().getCreditBalance() >= amount)) {
+            d = amount - getCard().getBalance();
+            getCard().setBalance(0);
+            getCard().setCreditBalance(getCard().getCreditBalance() - d);
+            System.out.print("ПОКУПКА: " + amount);
+            System.out.print(", DEB: " + getCard().getBalance());
+            System.out.print(", CRED: " + d);
         } else {
             throw new RuntimeException("Недостаточно средств!");
         }
