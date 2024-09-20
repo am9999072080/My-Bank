@@ -1,6 +1,7 @@
 package com.am.MyBank.service.impl;
 
 import com.am.MyBank.debit.DebitGold;
+import com.am.MyBank.dto.Role;
 import com.am.MyBank.model.Card;
 import com.am.MyBank.model.User;
 
@@ -91,7 +92,7 @@ public class UserServiceImpl implements UserService {
     public void userDelete(long id, Model model) {
         log.debug("Removing user by id: {}", id);
         User user = userRepository.findById(id).orElseThrow();
-        if (userRepository.findAll().size() > 1) {
+        if (userRepository.findAll().size() > 1 && user.getRole() == Role.USER) {
             userRepository.delete(user);
             log.info("User removed successfully");
         } else {
