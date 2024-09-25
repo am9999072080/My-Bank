@@ -26,7 +26,7 @@ public class DebitGold extends DebitSilver {
 
     @Override
     public String checkAllBalance() {
-        return "СРЕДСТВА НА ВАШИХ СЧЕТАХ В СИСТЕМЕ MyBank НА " + getCard().getDate() + ":  " + super.checkAllBalance() + " BONUS: " + String.format("%.2f", getCard().getBonus()) + "\n";
+        return "ИНФОРМАЦИЯ О ПОСЛЕДНОЙ УСПЕШНОЙ АВТОРИЗАЦИИ В MyBank:" + getCard().getDate() + ":  " + super.checkAllBalance() + " BONUS: " + getCard().getBonus() + "\n";
     }
 
     @Override

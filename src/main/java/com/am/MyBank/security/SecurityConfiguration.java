@@ -40,7 +40,7 @@ public class SecurityConfiguration extends AbstractHttpConfigurer {
                         .anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login").permitAll())
                 .csrf(AbstractHttpConfigurer::disable)
-                .logout(LogoutConfigurer::permitAll);
+                .logout((logout) -> logout.permitAll().logoutSuccessUrl("/home"));
         return http.build();
     }
 }
