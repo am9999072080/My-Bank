@@ -47,6 +47,8 @@ public class CreditController {
     public String transferByPhone(@RequestParam double balance, @RequestParam String phoneNumber, Authentication authentication) {
         if (userService.getByPhoneNumber(phoneNumber) == null || userService.getByPhoneNumber(phoneNumber) == userService.getUserAut(authentication)) {
             return "reg/error-phone-number";
+        } else if (service.pay(balance, authentication) == null) {
+            return "card/error-transaction";
         } else {
             service.sendByPhone(balance, phoneNumber, authentication);
             return "redirect:/aut";

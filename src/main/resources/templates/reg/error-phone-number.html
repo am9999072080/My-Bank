@@ -18,7 +18,9 @@
     <h1 style="text-align: center"> У_п_с! </h1>
     <h4 style="text-align:center"
         th:text="${#authentication.getPrincipal.getFirstName()}+'&ensp;'+ ${#authentication.getPrincipal.getLastName()}+'&ensp;'+ ${#authentication.getPrincipal.getMiddleName()}+ '&emsp;ОШИБКА ОПЕРАЦИИ'"></h4>
-    <h5 style="text-align:center" th:text="${#authentication.getPrincipal.getCard.getAllBalance()}+'&ensp;'"></h5>
+    <h2 style="text-align:center"> "ВАШ БАЛАНС </h2>
+    <h1 style="text-align:center"
+        th:text=" ${#authentication.getPrincipal.getCard.getBalance()}+'&ensp;'+'&#128176;'"></h1>
 
 
     <div style="text-align: center;">

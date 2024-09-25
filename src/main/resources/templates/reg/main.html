@@ -106,7 +106,6 @@
     <thead sec:authorize="hasAuthority('USER')">
     <h5 style="text-align:center"
         th:text="${#authentication.getPrincipal.getFirstName()}+'&ensp;'+ ${#authentication.getPrincipal.getLastName()}+'&ensp;'+ ${#authentication.getPrincipal.getMiddleName()}+ '&emsp;ВАША КРЕДИТНАЯ КАРТА'"></h5>
-    <h5 style="text-align:center" th:text="${#authentication.getPrincipal.getCard.getAllBalance()}+'&ensp;'"></h5>
     <th scope="col">Name on Card</th>
     <th scope="col">id</th>
     <th scope="col">balance</th>

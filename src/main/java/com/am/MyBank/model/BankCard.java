@@ -16,8 +16,6 @@ public abstract class BankCard {
 
     /**
      * Adding bank account
-     *
-     * @param amount
      */
     public abstract void addBalance(double amount);
 
@@ -29,7 +27,6 @@ public abstract class BankCard {
     public abstract double checkBalance();
 
     /**
-     * @param amount
      * @return true / false
      */
     public boolean pay(double amount) throws RuntimeException {
@@ -45,7 +42,7 @@ public abstract class BankCard {
      * @return balance debit, balance credit
      */
     public String checkAllBalance() {
-        return card.getBalance() + "";
+        return checkBalance() + "";
     }
 
     @Override
@@ -61,4 +58,3 @@ public abstract class BankCard {
         return Objects.hash(card);
     }
 }
-
