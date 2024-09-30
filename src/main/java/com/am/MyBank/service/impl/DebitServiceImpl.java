@@ -47,7 +47,6 @@ public class DebitServiceImpl implements DebitService {
 
     @Override
     public void sendByPhone(double amount, String phoneNumber, Authentication authentication) {
-        pay(amount, authentication);
         User user = userService.getByPhoneNumber(phoneNumber);
         BankCard debitGold = new DebitGold(user.getCard());
         debitGold.addBalance(amount);

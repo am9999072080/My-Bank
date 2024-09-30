@@ -47,7 +47,6 @@ public class CreditServiceImpl implements CreditService {
 
     @Override
     public void sendByPhone(double amount, String phoneNumber, Authentication authentication) {
-        pay(amount, authentication);
         User user = userService.getByPhoneNumber(phoneNumber);
         BankCard creditGold = new CreditGold(user.getCard());
         creditGold.addBalance(amount);
