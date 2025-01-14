@@ -8,7 +8,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -18,12 +17,20 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
-public class SecurityConfiguration extends AbstractHttpConfigurer {
+public class SecurityConfiguration {
     UserDetailsServiceImpl userDetailsService;
 
     private BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
+
+    private static final String[] AUTH_WHITELIST = {
+            "/reg",
+            "/exchange",
+            "/about",
+            "/registration",
+            "/home",
+    };
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
@@ -35,12 +42,12 @@ public class SecurityConfiguration extends AbstractHttpConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/reg", "/exchange", "/about", "/registration", "/home").permitAll()
+        return http.csrf(AbstractHttpConfigurer::disable)//отключение csrf
+                .authorizeHttpRequests(requests -> requests
+                        .requestMatchers(AUTH_WHITELIST).permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login").permitAll())
-                .csrf(AbstractHttpConfigurer::disable)
-                .logout((logout) -> logout.permitAll().logoutSuccessUrl("/home"));
-        return http.build();
+                .logout((logout) -> logout.permitAll().logoutSuccessUrl("/home"))
+                .build();
     }
 }
