@@ -42,12 +42,14 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable)//отключение csrf
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers(AUTH_WHITELIST).permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login").permitAll())
-                .logout((logout) -> logout.permitAll().logoutSuccessUrl("/home"))
-                .build();
+        return
+//                http.csrf(AbstractHttpConfigurer::disable)//отключение _csrf
+                http
+                        .authorizeHttpRequests(requests -> requests
+                                .requestMatchers(AUTH_WHITELIST).permitAll()
+                                .anyRequest().authenticated())
+                        .formLogin(form -> form.loginPage("/login").permitAll())
+                        .logout((logout) -> logout.permitAll().logoutSuccessUrl("/home"))
+                        .build();
     }
 }

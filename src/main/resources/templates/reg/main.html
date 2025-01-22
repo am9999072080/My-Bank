@@ -39,6 +39,7 @@
         <th>
 
             <form th:action="'/user/' + ${el.id} + '/remove'" method="post">
+                <div th:insert="~{section1/_csrf.token::footer}"></div>
                 <button class="btn btn-warning" type="submit">Удалить</button>
             </form>
         </th>
@@ -71,6 +72,7 @@
 
     <div class="container mt-5 mb-5">
         <form action="/debit/add" method="post">
+            <div th:insert="~{section1/_csrf.token::footer}"></div>
             <h4>ПОПОЛНИТЬ /без комиссии/:</h4>
             <span>Проверяя правильность указанной суммы для пополнения, нажмите «ПОПОЛНИТЬ».&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;</span>
             <input type="text" name="balance" pattern="\d+" title=" Только положительные целые числа"
@@ -79,6 +81,7 @@
             <br>
         </form>
         <form action="/debit/pay" method="post">
+            <div th:insert="~{section1/_csrf.token::footer}"></div>
             <h4>ОПЛАТИТЬ /без комиссии/:</h4>
             <span>Проверяя правильность указанной суммы для оплаты, нажмите «ОПЛАТИТЬ».&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</span>
             <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа"
@@ -87,6 +90,7 @@
             <br>
         </form>
         <form action="/debit/send" method=post>
+            <div th:insert="~{section1/_csrf.token::footer}"></div>
             <h4>ПЕРЕРЕВОД ПО ТЕЛЕФОНУ /без комиссии/:</h4>
             <span>Проверяя правильность указанной суммы и номер телефона для перевода, нажмите «ПЕРЕВЕСТИ».&ensp;</span>
             <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа"
@@ -128,6 +132,7 @@
 
     <div class="container mt-5 mb-5">
         <form action="/credit/add" method="post">
+            <div th:insert="~{section1/_csrf.token::footer}"></div>
             <h4>ПОПОЛНИТЬ /без комиссии/:</h4>
             <span>Проверяя правильность указанной суммы для пополнения, нажмите «ПОПОЛНИТЬ».&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;</span>
             <input type="text" name="balance" pattern="\d+" title=" Только положительные целые числа"
@@ -136,6 +141,7 @@
             <br>
         </form>
         <form action="/credit/pay" method="post">
+            <div th:insert="~{section1/_csrf.token::footer}"></div>
             <h4>ОПЛАТИТЬ /без комиссии/:</h4>
             <span>Проверяя правильность указанной суммы для оплаты, нажмите «ОПЛАТИТЬ».&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</span>
             <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа"
@@ -144,6 +150,7 @@
             <br>
         </form>
         <form action="/credit/send" method=post>
+            <div th:insert="~{section1/_csrf.token::footer}"></div>
             <h4>ПЕРЕРЕВОД ПО ТЕЛЕФОНУ /без комиссии/:</h4>
             <span>Проверяя правильность указанной суммы и номер телефона для перевода, нажмите «ПЕРЕВЕСТИ».&ensp;</span>
             <input type="text" name="balance" pattern="\d+" title="Только положительные целые числа"
