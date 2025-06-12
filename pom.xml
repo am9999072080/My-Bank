@@ -20,19 +20,19 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.4.4</version>
+            <version>3.5.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>6.4.4</version>
+            <version>6.5.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>11.0.7</version>
+            <version>11.0.8</version>
         </dependency>
 
         <dependency>
@@ -42,7 +42,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-            <version>3.4.4</version>
+            <version>3.5.0</version>
         </dependency>
 
         <dependency>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
+            <version>42.7.6</version>
         </dependency>
 
         <dependency>
@@ -66,7 +66,7 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>4.31.1</version>
+            <version>4.32.0</version>
         </dependency>
 
         <dependency>
